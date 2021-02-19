@@ -1,10 +1,8 @@
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import { SearchPlace } from './components/SearchPlace';
 
 function App() {
-
 
   const HomeView = () => (
     <header className="App-header">
