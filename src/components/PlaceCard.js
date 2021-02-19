@@ -32,10 +32,14 @@ export const PlaceCard = (props) => {
 
     const classes = useStyles();
 
+    const placeInformationHandler = () => {
+        window.location.href = "/place?id=" + props.id;
+    };
+
     return (
         <div>
-            <Grid item xs={10}>
-                <Card variant="outlined" className={classes.root}>
+            <Grid item xs={10} onClick={placeInformationHandler}>
+                <Card variant="outlined" className={classes.root} >
                     <CardMedia
                         className={classes.media}
                         image="https://a0.muscache.com/pictures/0c0fb5c1-8480-4561-baec-d3b1d913cbf9.jpg"

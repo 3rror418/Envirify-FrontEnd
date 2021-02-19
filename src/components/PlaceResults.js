@@ -12,9 +12,10 @@ export const PlaceResults = (props) => {
                 justify="center"
                 alignItems="center"
                 spacing={5}>
-                {props.items.map((item,index) => (
+                {props.items.map(item => (
                     <PlaceCard
-                        key={"result_"+index}
+                        key={item.id}
+                        id={item.id}
                         name={item.name}
                         city={item.city}
                         departament={item.departament}

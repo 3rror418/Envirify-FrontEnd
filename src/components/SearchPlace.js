@@ -1,10 +1,11 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import { PlaceResults } from './PlaceResults';
 
 export const SearchPlace = (props) => {
 
     const items = [{
+        id: 1,
         name: "Cabaña A",
         city: "Ubate",
         departament: "Cundinamarca",
@@ -12,6 +13,7 @@ export const SearchPlace = (props) => {
         description: "Una bonita cabaña de madera con un cuarto y un baño.",
         owner: "Pepe Gomez"
     }, {
+        id: 2,
         name: "Cabaña B",
         city: "Fuquene",
         departament: "Cundinamarca",
@@ -19,6 +21,7 @@ export const SearchPlace = (props) => {
         description: "Una bonita cabaña de madera con dos cuartos y un baño.",
         owner: "Pepe Gomez"
     }, {
+        id: 3,
         name: "Casa",
         city: "San Gil",
         departament: "Santander",
@@ -42,14 +45,14 @@ export const SearchPlace = (props) => {
         </Typography>
     );
 
-    let results = [];
+    let itemResults = [];
 
     if (place !== "") {
-        results = items.filter(item => item.city === place || item.departament === place);
+        itemResults = items.filter(item => item.city === place || item.departament === place);
     }
 
-    if (results.length > 0) {
-        resultComponent = (<PlaceResults items={results} />);
+    if (itemResults.length > 0) {
+        resultComponent = (<PlaceResults items={itemResults} />);
     }
 
     return (
