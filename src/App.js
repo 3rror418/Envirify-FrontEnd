@@ -5,6 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import logo from './logo.svg';
 import './App.css';
 import { SearchPlace } from './components/SearchPlace';
+import { PlaceInfo } from './components/PlaceInfo';
 
 function App() {
 
@@ -49,11 +50,14 @@ function App() {
 
   const SearchView = () => (<SearchPlace />);
 
+  const PlaceView = () => (<PlaceInfo />)
+
   return (
     <Router>
       <div className="App">
         <Route exact path="/" component={HomeView} />
         <Route path="/search" component={SearchView} />
+        <Route path="/place" component={PlaceView} />
       </div>
     </Router>
   );
