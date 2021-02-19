@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import { SearchPlace } from './components/SearchPlace';
 
 function App() {
 
 
-  const HomeView = (
+  const HomeView = () => (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <p>
@@ -21,12 +22,13 @@ function App() {
           </a>
     </header>
   );
+
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <div className="App">
         <Route exact path="/" component={HomeView} />
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 
