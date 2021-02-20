@@ -39,6 +39,11 @@ export const PlaceInfo = (props) => {
 
     const id = getParameterByName("id");
 
+    const sumbitBookHandler = (start, end) => {
+        //AQUI SE DEBE HACER EL POST DE LA SOLICITUD CON EL ID DEL LUGAR Y EL RANGO DE FECHAS.
+        alert("Solicitud para el lugar con el " + id + " fue aceptada de " + start.toLocaleString() + " hasta " + end.toLocaleString());
+    };
+
     let PlaceInformation = (
         <Typography variant="h4">
             There is no place!
@@ -70,7 +75,7 @@ export const PlaceInfo = (props) => {
                                     <Typography variant="h4">Owner:</Typography>
                                     <Typography variant="h5">{mockInfo.owner}</Typography>
                                     <br></br>
-                                    <ReservationModal />
+                                    <ReservationModal sumbitBook={sumbitBookHandler} />
                                 </div>
                             </div>
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
