@@ -2,9 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Rating from '@material-ui/lab/Rating';
+import Rating from '@material-ui/core/Rating';
 import Avatar from '@material-ui/core/Avatar';
-import {ReservationModal} from './ReservationModal';
+import { ReservationModal } from './ReservationModal';
 import { Navbar } from './global-components/navbar';
 import { Footer_v1 } from './global-components/footer';
 

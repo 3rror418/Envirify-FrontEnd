@@ -63,6 +63,7 @@ export const SearchPlace = (props) => {
             <Navbar />
             <Page_header HeaderTitle={"Results for: "+place}  />
             <br></br>
+            <br></br>
             {resultComponent}
             <Footer_v1 />
         </div>

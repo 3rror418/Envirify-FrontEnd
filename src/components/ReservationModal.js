@@ -5,6 +5,10 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import DatePicker from '@material-ui/lab/DatePicker';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -54,13 +58,13 @@ export const ReservationModal = (props) => {
                 <Fade in={openModal}>
                     <div className={classes.paper}>
                         <form className="form">
-                            <Input
-                                onChange={() => { }}
-                                id="Search"
-                                name="Search"
-                                autoComplete="Search"
-                                autoFocus
-                            ></Input>
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DatePicker
+                                    label="date"
+                                    onChange={()=>{}}
+                                    renderInput={(params) => <TextField {...params} />}
+                                />
+                            </LocalizationProvider>
                         </form>
                     </div>
                 </Fade>
