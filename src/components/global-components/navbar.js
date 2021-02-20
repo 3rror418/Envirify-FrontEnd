@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {SearchModal} from './../searchModal';
 
 export const Navbar = () => {
 
@@ -27,8 +28,8 @@ export const Navbar = () => {
 							<li className="top-bar-btn-booking">
 								<Link className="btn btn-yellow" to="/">Book Now <i className="fa fa-paper-plane" /></Link>
 							</li>
-							<li className="search">
-								<i className="ti-search" />
+							<li className="search" >
+								<SearchModal />
 							</li>
 							<li className="notification">
 								<a className="signUp-btn" href="#">
@@ -89,8 +90,8 @@ export const Navbar = () => {
 						<li>
 							<Link className="btn btn-yellow" to="/">Book Now <i className="fa fa-paper-plane" /></Link>
 						</li>
-						<li className="search">
-							<i className="ti-search" />
+						<li >
+							<SearchModal />
 						</li>
 					</ul>
 

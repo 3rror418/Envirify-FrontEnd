@@ -7,6 +7,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,39 +33,37 @@ export const PlaceCard = (props) => {
 
     const classes = useStyles();
 
-    const placeInformationHandler = () => {
-        window.location.href = "/place?id=" + props.id;
-    };
-
     return (
         <div>
-            <Grid item xs={10} onClick={placeInformationHandler}>
-                <Card variant="outlined" className={classes.root} >
-                    <CardMedia
-                        className={classes.media}
-                        image="https://a0.muscache.com/pictures/0c0fb5c1-8480-4561-baec-d3b1d913cbf9.jpg"
-                        title={props.name}
-                    />
-                    <CardHeader
-                        title={props.name}
-                        subheader={props.city + ", " + props.departament}
-                    />
-                    <CardContent>
-                        <Rating
-                            name="calification"
-                            value={props.calification}
-                            precision={0.5}
-                            readOnly
+            <Grid item xs={10}>
+                <Link to={"/place?id=" + props.id}>
+                    <Card variant="outlined" className={classes.root} >
+                        <CardMedia
+                            className={classes.media}
+                            image="https://a0.muscache.com/pictures/0c0fb5c1-8480-4561-baec-d3b1d913cbf9.jpg"
+                            title={props.name}
                         />
-                        <Typography color="textSecondary" gutterBottom>
-                            {props.description}
-                        </Typography>
-                        <Typography gutterBottom>
-                            {"Dueño: " + props.owner}
-                        </Typography>
-                    </CardContent>
+                        <CardHeader
+                            title={props.name}
+                            subheader={props.city + ", " + props.departament}
+                        />
+                        <CardContent>
+                            <Rating
+                                name="calification"
+                                value={props.calification}
+                                precision={0.5}
+                                readOnly
+                            />
+                            <Typography color="textSecondary" gutterBottom>
+                                {props.description}
+                            </Typography>
+                            <Typography gutterBottom>
+                                {"Dueño: " + props.owner}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Link>
 
-                </Card>
             </Grid>
         </div>
     );
