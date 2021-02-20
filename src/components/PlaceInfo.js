@@ -2,10 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
+import {ReservationModal} from './ReservationModal';
 import { Navbar } from './global-components/navbar';
 import { Footer_v1 } from './global-components/footer';
 
@@ -71,11 +70,8 @@ export const PlaceInfo = (props) => {
                                     <Typography variant="h4">Owner:</Typography>
                                     <Typography variant="h5">{mockInfo.owner}</Typography>
                                     <br></br>
-                                    <Button variant="contained" color="primary">
-                                        Make Reservation
-                                    </Button>
+                                    <ReservationModal />
                                 </div>
-
                             </div>
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
                                 <div className="video-popup-wrap">
