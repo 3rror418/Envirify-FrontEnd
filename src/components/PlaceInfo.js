@@ -6,6 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import { Navbar } from './global-components/navbar';
+import { Footer_v1 } from './global-components/footer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,44 +50,57 @@ export const PlaceInfo = (props) => {
         const placeId = parseInt(id);
         //AQUI SE BUSCARIA LA INFORMACION DEL LUGAR CON EL PLACE ID, EN VEZ DE USAR MOCK INFO.
         PlaceInformation = (
-            <div style={{ border: "5px solid #000" }}>
+            <div >
                 <CssBaseline />
-                <main className="layout">
-                    <Paper className="paper">
-                        <Typography variant="h2">{mockInfo.name}</Typography>
-                        <Typography variant="h3">{mockInfo.city + ", " + mockInfo.departament}</Typography>
-                        <div className={classes.root}>
-                            <Avatar variant="square"
-                                style={{ width: "400px", height: "400px" }}
-                                src="https://a0.muscache.com/pictures/0c0fb5c1-8480-4561-baec-d3b1d913cbf9.jpg" />
-                            <div>
-                                <Typography variant="h4">Calification:</Typography>
-                                <Rating
-                                    name="calification"
-                                    value={mockInfo.calification}
-                                    precision={0.5}
-                                    size="large"
-                                    readOnly
-                                />
-                                <Typography variant="h4">Description:</Typography>
-                                <Typography variant="h5">{mockInfo.description}</Typography>
-                                <Typography variant="h4">Owner:</Typography>
-                                <Typography variant="h5">{mockInfo.owner}</Typography>
-                            </div>
+                <div className="video-area tp-video-area pd-top-110">
+                    <div className="container viaje-go-top">
+                        <div className="row">
+                            <div className="col-xl-5 col-lg-6 align-self-center wow animated fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
+                                <div className="section-title mb-lg-0 mb-4 text-center text-lg-left">
+                                    <h2 className="title">{mockInfo.name}</h2>
+                                    <h3>{mockInfo.city + ", " + mockInfo.departament}</h3>
+                                    <Typography variant="h4">Calification: <Rating
+                                        name="calification"
+                                        value={mockInfo.calification}
+                                        precision={0.5}
+                                        size="large"
+                                        readOnly
+                                    /></Typography>
+                                    <Typography variant="h4">Description:</Typography>
+                                    <Typography variant="h5">{mockInfo.description}</Typography>
+                                    <Typography variant="h4">Owner:</Typography>
+                                    <Typography variant="h5">{mockInfo.owner}</Typography>
+                                    <br></br>
+                                    <Button variant="contained" color="primary">
+                                        Make Reservation
+                                    </Button>
+                                </div>
 
+                            </div>
+                            <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+                                <div className="video-popup-wrap">
+                                    <div>
+                                        <Avatar variant="square"
+                                            style={{ width: "500px", height: "400px" }}
+                                            src="https://a0.muscache.com/pictures/0c0fb5c1-8480-4561-baec-d3b1d913cbf9.jpg" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <Button variant="contained" color="primary">
-                            Make Reservation
-                        </Button>
-                    </Paper>
-                </main>
+                    </div>
+                </div>
             </div>
         );
     }
 
+    let publicUrl = process.env.PUBLIC_URL + '/';
+
     return (
         <div>
+            <Navbar />
             {PlaceInformation}
+            <br></br>
+            <Footer_v1 />
         </div>
     );
 };
