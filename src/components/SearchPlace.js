@@ -1,6 +1,8 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { PlaceResults } from './PlaceResults';
+import { Navbar } from './global-components/navbar';
+import { Page_header } from './global-components/page-header';
 
 export const SearchPlace = (props) => {
 
@@ -32,8 +34,8 @@ export const SearchPlace = (props) => {
 
     const getParameterByName = (name) => {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(window.location.search);
+        var regex = new RegExp("[\\?&#]" + name + "=([^&#]*)"),
+            results = regex.exec(window.location.href);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
@@ -57,9 +59,8 @@ export const SearchPlace = (props) => {
 
     return (
         <div>
-            <Typography style={{ textAlign: "left" }} variant="h3">
-                Results for: {place}
-            </Typography>
+            <Navbar />
+            <Page_header HeaderTitle={"Results for: "+place}  />
             <br></br>
             {resultComponent}
         </div>
