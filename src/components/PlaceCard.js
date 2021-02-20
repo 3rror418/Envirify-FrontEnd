@@ -1,11 +1,11 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import Rating from '@material-ui/lab/Rating';
+import Rating from '@material-ui/core/Rating';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
@@ -35,7 +35,7 @@ export const PlaceCard = (props) => {
 
     return (
         <div>
-            <Grid item xs={10}>
+            <Box m={1} p={1}>
                 <Link to={"/place?id=" + props.id}>
                     <Card variant="outlined" className={classes.root} >
                         <CardMedia
@@ -63,8 +63,7 @@ export const PlaceCard = (props) => {
                         </CardContent>
                     </Card>
                 </Link>
-
-            </Grid>
+            </Box>
         </div>
     );
 };

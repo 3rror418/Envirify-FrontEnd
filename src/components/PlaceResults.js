@@ -1,17 +1,16 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 import { PlaceCard } from './PlaceCard';
 
 
 export const PlaceResults = (props) => {
 
     return (
-        <div>
-            <Grid container
-                direction="row"
-                justify="center"
+        <div >
+            <Box justifyContent="center"
                 alignItems="center"
-                spacing={5}>
+                display="flex"
+                >
                 {props.items.map(item => (
                     <PlaceCard
                         key={item.id}
@@ -23,7 +22,7 @@ export const PlaceResults = (props) => {
                         description={item.description}
                         owner={item.owner} />
                 ))}
-            </Grid>
+            </Box>
         </div>
     );
 };
