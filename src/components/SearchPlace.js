@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { PlaceResults } from './PlaceResults';
 import { Navbar } from './global-components/navbar';
+import { Page_header } from './global-components/page-header';
 
 export const SearchPlace = (props) => {
 
@@ -59,9 +60,7 @@ export const SearchPlace = (props) => {
     return (
         <div>
             <Navbar />
-            <Typography style={{ textAlign: "left" }} variant="h3">
-                Results for: {place}
-            </Typography>
+            <Page_header HeaderTitle={"Results for: "+place}  />
             <br></br>
             {resultComponent}
         </div>

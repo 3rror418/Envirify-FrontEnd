@@ -12,10 +12,6 @@ export const Page_header = ({HeaderTitle}) => {
 				      <div className="col-lg-12">
 				        <div className="breadcrumb-inner">
 				          <h1 className="page-title">{ HeaderTitle }</h1>
-				          <ul className="page-list">
-				            <li><Link to="/">Home</Link></li>
-				            <li>{ HeaderTitle }</li>
-				          </ul>
 				        </div>
 				      </div>
 				    </div>
