@@ -8,7 +8,7 @@ export const PlaceResults = (props) => {
     return (
         <div >
             <Box justifyContent="center"
-                alignItems="center"
+                alignItems="flex-start"
                 display="flex"
                 >
                 {props.items.map(item => (
@@ -20,7 +20,9 @@ export const PlaceResults = (props) => {
                         departament={item.departament}
                         calification={item.calification}
                         description={item.description}
-                        owner={item.owner} />
+                        owner={item.owner} 
+                        showOwner={props.showOwner}
+                        showEdit={props.showEdit}/>
                 ))}
             </Box>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { PlacesList } from './../PlacesList';
 
 export const UserProfile = () => {
 
@@ -24,6 +24,9 @@ export const UserProfile = () => {
 									</li>
 									<li className="nav-item">
 										<a className="nav-link" data-toggle="tab" href="#tabs_6"><i className="fa fa-star-o" />Reviews</a>
+									</li>
+									<li className="nav-item">
+										<a className="nav-link" data-toggle="tab" href="#tabs_7"><i className="fa fa-user" />Your Places</a>
 									</li>
 									<li className="text-center">
 										<a className="btn btn-yellow" href="#"><i className="fa fa-sign-in" aria-hidden="true" /> <span>Log Out</span></a>
@@ -195,6 +198,9 @@ export const UserProfile = () => {
 												</ul>
 											</div>
 										</div>
+									</div>
+									<div className="tab-pane fade" id="tabs_7">
+										<PlacesList />
 									</div>
 								</div>
 							</div>

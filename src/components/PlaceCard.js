@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -57,9 +58,12 @@ export const PlaceCard = (props) => {
                             <Typography color="textSecondary" gutterBottom>
                                 {props.description}
                             </Typography>
-                            <Typography gutterBottom>
+                            {props.showOwner && <Typography gutterBottom>
                                 {"Dueño: " + props.owner}
-                            </Typography>
+                            </Typography>}
+                            {props.showEdit && <Button variant="contained" color="primary" onClick={() => { console.log("Editar") }}>
+                                Edit
+                            </Button>}
                         </CardContent>
                     </Card>
                 </Link>
