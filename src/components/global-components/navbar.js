@@ -79,13 +79,13 @@ export const Navbar = () => {
 							<Link to="/contact">Contact</Link>
 						</li>
 						<li>
-							<Link to="/">Log In / Sign Up</Link>
+							<Link to="/login">Log In / Sign Up</Link>
 						</li>
 						<li>
 							<Link to="/profile">Profile</Link>
 						</li>
 						<li>
-							<Link to="/create">New Lodging</Link>
+							<Link to="/search">New Lodging</Link>
 						</li>
 					</ul>
 				</div>
