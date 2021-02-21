@@ -7,6 +7,7 @@ import { SearchPlace } from './components/SearchPlace';
 import { PlaceInfo } from './components/PlaceInfo';
 import { UserProfilePage } from './components/User';
 import { CreatePlace } from './components/CreatePlace';
+import { UpdateLodging } from './components/UpdateLodging';
 import { Login } from './components/Login';
 
 
@@ -33,6 +34,7 @@ export const Home = () => {
                         <Route path="/place" component={PlaceView} />
                         <Route path="/profile" component={localStorage.getItem('isLoggedIn')=="true" ? UserProfilePage:LoginView} />
                         <Route path="/create" component={CreatePlace} />
+                        <Route path="/update" component={UpdateLodging} />
                         <Route path="/login" component={localStorage.getItem('isLoggedIn')=="true" ? UserProfilePage:LoginView} />
                     </Switch>
                 </div>
