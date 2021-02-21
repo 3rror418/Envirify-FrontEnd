@@ -82,7 +82,10 @@ export const Navbar = () => {
 							<Link to="/">Log In / Sign Up</Link>
 						</li>
 						<li>
-							<Link to="/profle">Profile</Link>
+							<Link to="/profile">Profile</Link>
+						</li>
+						<li>
+							<Link to="/create">New Lodging</Link>
 						</li>
 					</ul>
 				</div>
