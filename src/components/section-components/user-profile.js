@@ -3,7 +3,12 @@ import { PlacesList } from './../PlacesList';
 
 export const UserProfile = () => {
 
-	let publicUrl = process.env.PUBLIC_URL + '/'
+	let publicUrl = process.env.PUBLIC_URL + '/';
+
+	const handleSubmit = (e) =>{
+		localStorage.removeItem('isLoggedIn');
+		window.location.href = "/profile";
+	}
 
 	return (
 		<div className="user-profile-area pd-top-120">
@@ -29,7 +34,7 @@ export const UserProfile = () => {
 										<a className="nav-link" data-toggle="tab" href="#tabs_7"><i className="fa fa-user" />Your Places</a>
 									</li>
 									<li className="text-center">
-										<a className="btn btn-yellow" href="#"><i className="fa fa-sign-in" aria-hidden="true" /> <span>Log Out</span></a>
+										<a className="btn btn-yellow" onClick = {handleSubmit}><i className="fa fa-sign-in" aria-hidden="true"/> <span>Log Out</span></a>
 									</li>
 								</ul>
 							</div>

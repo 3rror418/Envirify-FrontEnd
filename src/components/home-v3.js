@@ -9,7 +9,8 @@ import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'reac
 import 'react-chat-widget/lib/styles.css';
 
 export const Home_V3 = () => {
-	
+
+    
 	useEffect(() => {
         addResponseMessage("Welcome to this awesome chat!");
     }, [])
