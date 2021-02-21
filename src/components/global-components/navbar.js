@@ -85,7 +85,7 @@ export const Navbar = () => {
 							<Link to="/profile">Profile</Link>
 						</li>
 						<li>
-							<Link to="/search">New Lodging</Link>
+							<Link to="/create">New Lodging</Link>
 						</li>
 					</ul>
 				</div>

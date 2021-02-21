@@ -8,11 +8,12 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/core/Rating';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 500,
+        width:200,
+        maxWidth:300
+        
     },
     media: {
         height: 0,
@@ -34,10 +35,11 @@ export const PlaceCard = (props) => {
 
     const classes = useStyles();
 
+
     return (
         <div>
             <Box m={1} p={1}>
-                <Link to={"/place?id=" + props.id}>
+               {/*<Link to={"/place?id=" + props.id}>*/}
                     <Card variant="outlined" className={classes.root} >
                         <CardMedia
                             className={classes.media}
@@ -61,12 +63,18 @@ export const PlaceCard = (props) => {
                             {props.showOwner && <Typography gutterBottom>
                                 {"Dueño: " + props.owner}
                             </Typography>}
-                            {props.showEdit && <Button variant="contained" color="primary" onClick={() => { console.log("Editar") }}>
+                            {props.showEdit && <Button variant="contained" style={{marginTop:"10px", marginRight:"10px"}} color="primary" onClick={event => window.location.href='/update'}>
                                 Edit
                             </Button>}
+
+                           
+                            <Button variant="contained" color="primary" style={{marginTop:"10px"}} onClick={event => window.location.href=`/place?id=${props.id}`}>
+                                View
+                            </Button>
+
                         </CardContent>
                     </Card>
-                </Link>
+               {/* </Link>*/}
             </Box>
         </div>
     );
