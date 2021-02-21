@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {SearchModal} from './../searchModal';
+import { SearchModal } from './../searchModal';
 
 export const Navbar = () => {
 
@@ -78,11 +78,12 @@ export const Navbar = () => {
 						<li>
 							<Link to="/contact">Contact</Link>
 						</li>
-
 						<li>
 							<Link to="/">Log In / Sign Up</Link>
 						</li>
-
+						<li>
+							<Link to="/profle">Profile</Link>
+						</li>
 					</ul>
 				</div>
 				<div className="nav-right-content">
