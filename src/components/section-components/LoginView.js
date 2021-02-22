@@ -5,16 +5,14 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 
 
+export const LoginView = ({handleChange}) =>{
 
-
-
-export const LoginView = () =>{
-
-    const paperStyle={padding: 20, height : '70vh' , width : 680 , margin:"20px auto"}
+    const paperStyle={padding: 20, height : '70vh' , width : 310 , margin:"0px auto"}
     const btnStyle={margin:'8px 0'}
-    const avatarStyle={backgroundColor:'green'}
+    const avatarStyle={backgroundColor:'#1bbd7e'}
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const marginTop = {marginTop:5}
 
 
     const setLogIn = (logged) => {
@@ -48,15 +46,16 @@ export const LoginView = () =>{
     return (
         <div>
         <Grid>
-            <Paper elevation={10} style={paperStyle}>
+            <Paper  style={paperStyle}>
                 <Grid align="center">
                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                    <h2>Sign in</h2>
+                    <h3>Sign in</h3>
                 </Grid>
                 <TextField 
                     label='Username' 
                     placeholder = 'Enter username' 
                     fullWidth required 
+                    style={marginTop}
                     onChange={handleUsernameChange}
                 />
                 <br/>  
@@ -65,6 +64,7 @@ export const LoginView = () =>{
                     placeholder = 'Enter password' 
                     type ='password' 
                     fullWidth required 
+                    style={marginTop}
                     onChange={handlePasswordChange}
                 />
                 <FormControlLabel
@@ -91,8 +91,8 @@ export const LoginView = () =>{
                     Forgot password?    
                 </Link>
                 </Typography >
-                <Typography align="left"> Do you have an account? &nbsp;
-                <Link to="/login">
+                <Typography align="left"> Don't you have an account? &nbsp;
+                <Link href="#" to="/login" style={{ color: 'blue' }} onClick ={() => handleChange("event",1)}>
                     Sign up
                 </Link>
                 </Typography>
