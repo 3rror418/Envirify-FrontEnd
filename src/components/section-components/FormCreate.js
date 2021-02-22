@@ -27,7 +27,9 @@ export const FormCreate = () => {
                     'Created!',
                     'Your lodging has been created',
                     'success'
-                )
+                ).then(function(){
+                    window.location.href="/"
+                })
             }
         })
 

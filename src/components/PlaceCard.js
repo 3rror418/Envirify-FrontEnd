@@ -8,6 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/core/Rating';
 import { makeStyles } from '@material-ui/core/styles';
+import Swal from 'sweetalert2'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,6 +35,29 @@ const useStyles = makeStyles((theme) => ({
 export const PlaceCard = (props) => {
 
     const classes = useStyles();
+
+    const handleDelete =()=>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+              Swal.fire(
+                'Deleted!',
+                'Your lodging has been deleted.',
+                'success'
+              ).then(function(){
+                window.location.href="/profile"
+            })
+            }
+          })
+    }
 
 
     return (
@@ -67,7 +91,10 @@ export const PlaceCard = (props) => {
                                 Edit
                             </Button>}
 
-                           
+                            <Button variant="contained" color="primary" style={{marginTop:"10px"}} onClick={handleDelete} >
+                                Delete
+                            </Button>
+
                             <Button variant="contained" color="primary" style={{marginTop:"10px"}} onClick={event => window.location.href=`/place?id=${props.id}`}>
                                 View
                             </Button>

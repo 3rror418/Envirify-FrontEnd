@@ -46,7 +46,7 @@ export const SearchModal = (props) => {
 
     return (
         <div>
-            <IconButton type="submit" aria-label="search" onClick={openModalHandler}>
+            <IconButton className="materialIcon" type="submit" aria-label="search" onClick={openModalHandler}>
                 <SearchIcon />
             </IconButton>
             <Modal
