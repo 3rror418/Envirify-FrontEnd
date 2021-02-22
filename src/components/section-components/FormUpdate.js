@@ -22,7 +22,13 @@ export const FormUpdate = () => {
             confirmButtonText: 'Yes, update it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "/profile"
+                Swal.fire(
+                    'Updated!',
+                    'Your lodging has been updated',
+                    'success'
+                ).then(function(){
+                    window.location.href="/profile"
+                })
             }
         })
     }
