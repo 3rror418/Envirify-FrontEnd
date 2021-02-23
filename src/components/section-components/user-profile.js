@@ -1,4 +1,5 @@
 import React from 'react';
+import { Reviews } from '../Reviews';
 import { BookingsList } from './../BookingsList';
 import { PlacesList } from './../PlacesList';
 
@@ -187,31 +188,7 @@ export const UserProfile = () => {
 										</div>
 									</div>
 									<div className="tab-pane fade" id="tabs_6">
-										<div className="user-tour-details">
-											<h3 className="user-details-title">Reviews</h3>
-											<span className="user-tour-details-title">Reviews About You</span>
-											<span>| Reviews By You</span>
-											<div className="comments-area tour-details-review-area">
-												<ul className="comment-list mb-0">
-													<li>
-														<div className="single-comment-wrap">
-															<div className="content">
-																<h4 className="title">Tyler Bailey</h4>
-																<span className="date">13 August 2019</span>
-																<div className="tp-review-meta">
-																	<i className="ic-yellow fa fa-star" />
-																	<i className="ic-yellow fa fa-star" />
-																	<i className="ic-yellow fa fa-star" />
-																	<i className="ic-yellow fa fa-star" />
-																	<i className="ic-yellow fa fa-star" />
-																</div>
-																<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</p>
-															</div>
-														</div>
-													</li>
-												</ul>
-											</div>
-										</div>
+										<Reviews></Reviews>
 									</div>
 
 									<div className="tab-pane fade" id="tabs_7">
