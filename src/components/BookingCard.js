@@ -8,7 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/core/Rating';
 import { makeStyles } from '@material-ui/core/styles';
-import Swal from 'sweetalert2'
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,34 +32,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const PlaceCard = (props) => {
+export const BookingCard = (props) => {
 
     const classes = useStyles();
 
-    const handleDelete =()=>{
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if (result.isConfirmed) {
+    const initialDate= moment().toLocaleString().split(' ').slice(1,4).join(' ')
+    const finishDate= moment().toLocaleString().split(' ').slice(1,4).join(' ')
 
-              Swal.fire(
-                'Deleted!',
-                'Your lodging has been deleted.',
-                'success'
-              ).then(function(){
-                window.location.href="/profile"
-            })
-            }
-          })
-    }
-
-
+   
     return (
         <div>
             <Box m={1} p={1}>
@@ -81,19 +61,19 @@ export const PlaceCard = (props) => {
                                 precision={0.5}
                                 readOnly
                             />
-                            <Typography color="textSecondary" gutterBottom>
-                                {props.description}
-                            </Typography>
+                           
                             {props.showOwner && <Typography gutterBottom>
-                                {"Dueño: " + props.owner}
+                                {"Owner: " + props.owner}
                             </Typography>}
-                            {props.showEdit && <Button variant="contained" style={{marginTop:"10px", marginRight:"10px"}} color="primary" onClick={event => window.location.href='/update'}>
-                                Edit
-                            </Button>}
 
-                            {props.showEdit &&  <Button variant="contained" color="primary" style={{marginTop:"10px"}} onClick={handleDelete} >
-                                Delete
-                            </Button>}
+                             <Typography gutterBottom>
+                                {`Initial date ${initialDate}`}
+                            </Typography>
+
+                           <Typography gutterBottom>
+                                {`Finish date ${finishDate}`}
+                            </Typography>
+                          
 
                             <Button variant="contained" color="primary" style={{marginTop:"10px"}} onClick={event => window.location.href=`/place?id=${props.id}&&showReservation=${props.showReservation}`}>
                                 View

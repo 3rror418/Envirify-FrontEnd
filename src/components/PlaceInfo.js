@@ -7,6 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { ReservationModal } from './ReservationModal';
 import { Navbar } from './global-components/navbar';
 import { Footer_v1 } from './global-components/footer';
+import { BannerV2 } from './section-components/banner-v2';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,6 +31,7 @@ export const PlaceInfo = (props) => {
         owner: "Pepe Gomez"
     };
 
+    
     const getParameterByName = (name) => {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -38,6 +40,7 @@ export const PlaceInfo = (props) => {
     }
 
     const id = getParameterByName("id");
+    const showReservation = (getParameterByName("showReservation")==='true');
 
     const sumbitBookHandler = (start, end) => {
         //AQUI SE DEBE HACER EL POST DE LA SOLICITUD CON EL ID DEL LUGAR Y EL RANGO DE FECHAS.
@@ -74,8 +77,9 @@ export const PlaceInfo = (props) => {
                                     <Typography variant="h5">{mockInfo.description}</Typography>
                                     <Typography variant="h4">Owner:</Typography>
                                     <Typography variant="h5">{mockInfo.owner}</Typography>
+                                   
                                     <br></br>
-                                    <ReservationModal sumbitBook={sumbitBookHandler} />
+                                    {showReservation && <ReservationModal  sumbitBook={sumbitBookHandler} />}
                                 </div>
                             </div>
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
@@ -99,6 +103,7 @@ export const PlaceInfo = (props) => {
     return (
         <div>
             <Navbar />
+            <BannerV2 />
             {PlaceInformation}
             <br></br>
             <Footer_v1 />

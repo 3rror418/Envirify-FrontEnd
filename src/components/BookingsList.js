@@ -1,7 +1,8 @@
-import React from 'react';
+import React from 'react'
+import { BookingResult } from './BookingResult';
 import { PlaceResults } from './PlaceResults';
 
-export const PlacesList = (props) => {
+export const BookingsList = () => {
 
     const items = [{
         id: 1,
@@ -30,9 +31,12 @@ export const PlacesList = (props) => {
     }];
 
     return (
-        <div className="user-details">
-            <h3 className="user-details-title">Your Plddaces</h3>
-            <PlaceResults showReservation={true} items={items} showOwner={false} showEdit/>
+       
+            <div className="user-details">
+            <h3 className="user-details-title">Your Bookings</h3>
+            <BookingResult items={items} showReservation={false} showOwner={false} showEdit={false}/>
         </div>
-    );
-};
+            
+        
+    )
+}
