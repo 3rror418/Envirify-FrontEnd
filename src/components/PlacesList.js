@@ -31,7 +31,7 @@ export const PlacesList = (props) => {
 
     return (
         <div className="user-details">
-            <h3 className="user-details-title">Your Plddaces</h3>
+            <h3 className="user-details-title">Your Places</h3>
             <PlaceResults showReservation={true} items={items} showOwner={false} showEdit/>
         </div>
     );

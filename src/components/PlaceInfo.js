@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Rating from '@material-ui/core/Rating';
@@ -9,18 +8,7 @@ import { Navbar } from './global-components/navbar';
 import { Footer_v1 } from './global-components/footer';
 import { BannerV2 } from './section-components/banner-v2';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        '& > *': {
-            margin: theme.spacing(8)
-        }
-    },
-}));
-
-export const PlaceInfo = (props) => {
-
-    const classes = useStyles();
+export const PlaceInfo = () => {
 
     const mockInfo = {
         name: "Cabaña A",
@@ -31,7 +19,7 @@ export const PlaceInfo = (props) => {
         owner: "Pepe Gomez"
     };
 
-    
+
     const getParameterByName = (name) => {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -40,11 +28,12 @@ export const PlaceInfo = (props) => {
     }
 
     const id = getParameterByName("id");
-    const showReservation = (getParameterByName("showReservation")==='true');
+    const showReservation = (getParameterByName("showReservation") === 'true');
 
     const sumbitBookHandler = (start, end) => {
         //AQUI SE DEBE HACER EL POST DE LA SOLICITUD CON EL ID DEL LUGAR Y EL RANGO DE FECHAS.
-        alert("Solicitud para el lugar con el " + id + " fue aceptada de " + start.toLocaleString() + " hasta " + end.toLocaleString());
+        const message = "Solicitud para el lugar con el " + id + " fue aceptada de " + start.toLocaleString() + " hasta " + end.toLocaleString();
+        alert(message);
     };
 
     let PlaceInformation = (
@@ -77,9 +66,9 @@ export const PlaceInfo = (props) => {
                                     <Typography variant="h5">{mockInfo.description}</Typography>
                                     <Typography variant="h4">Owner:</Typography>
                                     <Typography variant="h5">{mockInfo.owner}</Typography>
-                                   
+
                                     <br></br>
-                                    {showReservation && <ReservationModal  sumbitBook={sumbitBookHandler} />}
+                                    {showReservation && <ReservationModal sumbitBook={sumbitBookHandler} />}
                                 </div>
                             </div>
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">

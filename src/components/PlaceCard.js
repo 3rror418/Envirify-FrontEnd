@@ -8,7 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/core/Rating';
 import { makeStyles } from '@material-ui/core/styles';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
     root: {
