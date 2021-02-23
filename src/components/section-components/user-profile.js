@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { BookingsList } from './../BookingsList';
 import { PlacesList } from './../PlacesList';
 
 export const UserProfile = () => {
@@ -49,6 +50,9 @@ export const UserProfile = () => {
 									</li>
 									<li className="nav-item">
 										<a className="nav-link" data-toggle="tab" href="#tabs_7"><i className="fa fa-user" />Your Places</a>
+									</li>
+									<li className="nav-item">
+										<a className="nav-link" data-toggle="tab" href="#tabs_8"><i className="fa fa-user" />Your Bookings</a>
 									</li>
 									<li className="text-center">
 										<a className="btn btn-yellow" onClick = {logOut}><i className="fa fa-sign-in" aria-hidden="true"/> <span>Log Out</span></a>
@@ -209,9 +213,15 @@ export const UserProfile = () => {
 											</div>
 										</div>
 									</div>
+
 									<div className="tab-pane fade" id="tabs_7">
 										<PlacesList />
 									</div>
+
+									<div className="tab-pane fade" id="tabs_8">
+										<BookingsList />
+									</div>
+
 								</div>
 							</div>
 						</div>

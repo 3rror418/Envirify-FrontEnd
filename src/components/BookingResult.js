@@ -1,18 +1,16 @@
-import React from 'react';
-import Box from '@material-ui/core/Box';
-import { PlaceCard } from './PlaceCard';
+import { Box } from '@material-ui/core'
+import React from 'react'
+import { BookingCard } from './BookingCard';
 
-
-export const PlaceResults = (props) => {
-
+export const BookingResult = (props) => {
     return (
-        <div >
+        <div>
             <Box justifyContent="center"
                 alignItems="flex-start"
                 display="flex"
                 >
                 {props.items.map(item => (
-                    <PlaceCard showReservation={props.showReservation}
+                    <BookingCard showReservation={props.showReservation}
                         key={item.id}
                         id={item.id}
                         name={item.name}
@@ -25,6 +23,7 @@ export const PlaceResults = (props) => {
                         showEdit={props.showEdit}/>
                 ))}
             </Box>
+            
         </div>
-    );
-};
+    )
+}
