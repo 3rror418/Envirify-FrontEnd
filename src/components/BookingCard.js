@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width:200,
         maxWidth:300
-        
     },
     media: {
         height: 0,
@@ -36,10 +35,9 @@ export const BookingCard = (props) => {
 
     const classes = useStyles();
 
-    const initialDate= moment().toLocaleString().split(' ').slice(1,4).join(' ')
-    const finishDate= moment().toLocaleString().split(' ').slice(1,4).join(' ')
+    const initialDate= moment().toLocaleString().split(' ').slice(1,4).join(' ');
+    const finishDate= moment().toLocaleString().split(' ').slice(1,4).join(' ');
 
-   
     return (
         <div>
             <Box m={1} p={1}>
@@ -73,7 +71,6 @@ export const BookingCard = (props) => {
                            <Typography gutterBottom>
                                 {`Finish date ${finishDate}`}
                             </Typography>
-                          
 
                             <Button variant="contained" color="primary" style={{marginTop:"10px"}} onClick={event => window.location.href=`/place?id=${props.id}&&showReservation=${props.showReservation}`}>
                                 View

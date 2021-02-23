@@ -55,7 +55,7 @@ export const SearchPlace = (props) => {
     }
 
     if (itemResults.length > 0) {
-        resultComponent = (<PlaceResults items={itemResults} showOwner showEdit={false}/>);
+        resultComponent = (<PlaceResults items={itemResults} showOwner showEdit={false} showReservation/>);
     }
 
     return (
