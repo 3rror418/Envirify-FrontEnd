@@ -1,14 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { PlacesList } from './../PlacesList';
 
 export const UserProfile = () => {
 
 	let publicUrl = process.env.PUBLIC_URL + '/';
 
-	const handleSubmit = (e) =>{
+	let mail = localStorage.getItem('username');
+
+	const usuario = {
+		"name": "Nicolas Aguilera Contreras",
+		"phone": "3005515078",
+		"email": mail,
+		"country": "Colombia",
+		"description": "Soy un chico play"
+	}
+ 
+
+	const handleSubmit = (e) => {
+	}
+
+	const handleChange = (e) =>{
+	}
+
+	const logOut = (e) =>{
 		localStorage.removeItem('isLoggedIn');
 		window.location.href = "/profile";
-	}
+    }
 
 	return (
 		<div className="user-profile-area pd-top-120">
@@ -34,7 +51,7 @@ export const UserProfile = () => {
 										<a className="nav-link" data-toggle="tab" href="#tabs_7"><i className="fa fa-user" />Your Places</a>
 									</li>
 									<li className="text-center">
-										<a className="btn btn-yellow" onClick = {handleSubmit}><i className="fa fa-sign-in" aria-hidden="true"/> <span>Log Out</span></a>
+										<a className="btn btn-yellow" onClick = {logOut}><i className="fa fa-sign-in" aria-hidden="true"/> <span>Log Out</span></a>
 									</li>
 								</ul>
 							</div>
@@ -49,38 +66,32 @@ export const UserProfile = () => {
 												<div className="row">
 													<div className="col-md-6">
 														<label className="single-input-wrap style-two">
-															<span className="single-input-title">Your First Name</span>
-															<input type="text" name="first-name" />
-														</label>
-													</div>
-													<div className="col-md-6">
-														<label className="single-input-wrap style-two">
-															<span className="single-input-title">Your Last Name</span>
-															<input type="text" name="last-name" />
-														</label>
-													</div>
-													<div className="col-lg-12">
-														<label className="single-input-wrap style-two">
-															<span className="single-input-title">Your Tell us about yourself.</span>
-															<textarea defaultValue={""} name="message" />
-														</label>
-													</div>
-													<div className="col-md-7">
-														<label className="single-input-wrap style-two">
-															<span className="single-input-title">Your Country</span>
-															<input type="text" name="country" />
-														</label>
-													</div>
-													<div className="col-md-6">
-														<label className="single-input-wrap style-two">
-															<span className="single-input-title">Your Email Address</span>
-															<input type="text" name="email" />
+															<span className="single-input-title">Your Name</span>
+															<input type="text" name="first-name" value={usuario.name}/>
 														</label>
 													</div>
 													<div className="col-md-6">
 														<label className="single-input-wrap style-two">
 															<span className="single-input-title">Your Phone</span>
-															<input type="text" name="phone" />
+															<input type="text" name="phone" value={usuario.phone} />
+														</label>
+													</div>
+													<div className="col-lg-12">
+														<label className="single-input-wrap style-two">
+															<span className="single-input-title">Your Tell us about yourself.</span>
+															<textarea name="message" value={usuario.description}/>
+														</label>
+													</div>
+													<div className="col-md-6">
+														<label className="single-input-wrap style-two">
+															<span className="single-input-title">Your Country</span>
+															<input type="text" name="country" value={usuario.country} />
+														</label>
+													</div>
+													<div className="col-md-6">
+														<label className="single-input-wrap style-two">
+															<span className="single-input-title">Your Email Address</span>
+															<input type="text" name="email" value={usuario.email}/>
 														</label>
 													</div>
 												</div>
@@ -93,42 +104,36 @@ export const UserProfile = () => {
 											<div className="row">
 												<div className="tp-img-upload">
 												</div>
-												<form className="tp-form-wrap">
+												<form className="tp-form-wrap" onSubmit={handleSubmit}>
 													<div className="row">
 														<div className="col-md-6">
 															<label className="single-input-wrap style-two">
 																<span className="single-input-title">Change First Name</span>
-																<input type="text" name="first-name" />
-															</label>
-														</div>
-														<div className="col-md-6">
-															<label className="single-input-wrap style-two">
-																<span className="single-input-title">Change Last Name</span>
-																<input type="text" name="last-name" />
-															</label>
-														</div>
-														<div className="col-lg-12">
-															<label className="single-input-wrap style-two">
-																<span className="single-input-title">Change Tell us about yourself.</span>
-																<textarea defaultValue={""} name="message" />
-															</label>
-														</div>
-														<div className="col-md-7">
-															<label className="single-input-wrap style-two">
-																<span className="single-input-title">Change Country</span>
-																<input type="text" name="country" />
-															</label>
-														</div>
-														<div className="col-md-6">
-															<label className="single-input-wrap style-two">
-																<span className="single-input-title">Change Email Address</span>
-																<input type="text" name="email" />
+																<input type="text" name="name" value={usuario.name} onChange={handleChange} />
 															</label>
 														</div>
 														<div className="col-md-6">
 															<label className="single-input-wrap style-two">
 																<span className="single-input-title">Change Phone</span>
-																<input type="text" name="phone" />
+																<input type="text" name="phone" value={usuario.phone} onChange={handleChange}/>
+															</label>
+														</div>
+														<div className="col-lg-12">
+															<label className="single-input-wrap style-two">
+																<span className="single-input-title">Change Tell us about yourself.</span>
+																<textarea name="description" value={usuario.description} onChange={handleChange}/>
+															</label>
+														</div>
+														<div className="col-md-6">
+															<label className="single-input-wrap style-two">
+																<span className="single-input-title">Change Country</span>
+																<input type="text" name="country" value={usuario.country} onChange={handleChange}/>
+															</label>
+														</div>
+														<div className="col-md-6">
+															<label className="single-input-wrap style-two">
+																<span className="single-input-title">Change Email Address</span>
+																<input type="text" name="email" value={usuario.email} onChange={handleChange}/>
 															</label>
 														</div>
 														<div className="col-12">
