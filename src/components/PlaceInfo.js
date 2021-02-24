@@ -7,6 +7,8 @@ import { ReservationModal } from './ReservationModal';
 import { Navbar } from './global-components/navbar';
 import { Footer_v1 } from './global-components/footer';
 import { BannerV2 } from './section-components/banner-v2';
+import { ReviewModal } from './ReviewModal';
+
 
 export const PlaceInfo = () => {
 
@@ -69,6 +71,8 @@ export const PlaceInfo = () => {
 
                                     <br></br>
                                     {showReservation && <ReservationModal sumbitBook={sumbitBookHandler} />}
+                                    <br></br>
+                                    {<ReviewModal></ReviewModal>}
                                 </div>
                             </div>
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
