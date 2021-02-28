@@ -5,7 +5,7 @@ import Rating from '@material-ui/core/Rating';
 import Avatar from '@material-ui/core/Avatar';
 import { ReservationModal } from './ReservationModal';
 import { Navbar } from './global-components/navbar';
-import { Footer_v1 } from './global-components/footer';
+import { FooterV1 } from './global-components/footer';
 import { BannerV2 } from './section-components/banner-v2';
 import { ReviewModal } from './ReviewModal';
 
@@ -23,7 +23,7 @@ export const PlaceInfo = () => {
 
 
     const getParameterByName = (name) => {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(window.location.href);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
@@ -45,7 +45,7 @@ export const PlaceInfo = () => {
     );
 
     if (id !== "") {
-        const placeId = parseInt(id);
+        // const placeId = parseInt(id);
         //AQUI SE BUSCARIA LA INFORMACION DEL LUGAR CON EL PLACE ID, EN VEZ DE USAR MOCK INFO.
         PlaceInformation = (
             <div >
@@ -91,7 +91,7 @@ export const PlaceInfo = () => {
         );
     }
 
-    let publicUrl = process.env.PUBLIC_URL + '/';
+    // let publicUrl = process.env.PUBLIC_URL + '/';
 
     return (
         <div>
@@ -99,7 +99,7 @@ export const PlaceInfo = () => {
             <BannerV2 />
             {PlaceInformation}
             <br></br>
-            <Footer_v1 />
+            <FooterV1 />
         </div>
     );
 };

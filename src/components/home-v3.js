@@ -4,8 +4,8 @@ import { BannerV2 } from './section-components/banner-v2';
 import { IntroV2 } from './section-components/intro-v2';
 import { Video } from './section-components/video';
 import { Counter } from './section-components/counter';
-import { Footer_v1 } from './global-components/footer';
-import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
+import { FooterV1 } from './global-components/footer';
+import { Widget, addResponseMessage} from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 
 export const Home_V3 = () => {
@@ -32,7 +32,7 @@ export const Home_V3 = () => {
           title="Envirify"
           subtitle="Chat"
         />
-        <Footer_v1 />
+        <FooterV1 />
     </div>
 }
 

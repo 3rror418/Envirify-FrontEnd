@@ -32,10 +32,10 @@ export const Home = () => {
                         <Route path="/contact" component={ContactPage} />
                         <Route path="/search" component={SearchView} />
                         <Route path="/place" component={PlaceView} />
-                        <Route path="/profile" component={localStorage.getItem('isLoggedIn')=="true" ? UserProfilePage:LoginView} />
+                        <Route path="/profile" component={localStorage.getItem('isLoggedIn')==="true" ? UserProfilePage:LoginView} />
                         <Route path="/create" component={CreatePlace} />
                         <Route path="/update" component={UpdateLodging} />
-                        <Route path="/login" component={localStorage.getItem('isLoggedIn')=="true" ? UserProfilePage:LoginView} />
+                        <Route path="/login" component={localStorage.getItem('isLoggedIn')==="true" ? UserProfilePage:LoginView} />
                     </Switch>
                 </div>
             </HashRouter>

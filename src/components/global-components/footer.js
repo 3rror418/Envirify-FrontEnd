@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-export const Footer_v1 = () => {
+export const FooterV1 = () => {
 
 	let publicUrl = process.env.PUBLIC_URL+'/'
 
