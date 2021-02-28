@@ -91,8 +91,6 @@ export const PlaceInfo = () => {
         );
     }
 
-    // let publicUrl = process.env.PUBLIC_URL + '/';
-
     return (
         <div>
             <Navbar />
