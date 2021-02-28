@@ -1,6 +1,5 @@
 import React from 'react'
 import { BookingResult } from './BookingResult';
-import { PlaceResults } from './PlaceResults';
 
 export const BookingsList = () => {
 

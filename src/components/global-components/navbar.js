@@ -32,7 +32,7 @@ export const Navbar = () => {
 								<SearchModal />
 							</li>
 							<li className="notification">
-								<a className="signUp-btn" href="#">
+								<a className="signUp-btn" href="#notification">
 									<i className="fa fa-user-o" />
 								</a>
 							</li>

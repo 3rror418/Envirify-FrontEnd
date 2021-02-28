@@ -1,17 +1,17 @@
 import React from 'react';
 import { Navbar } from './global-components/navbar';
-import { Page_Header } from './global-components/page-header';
+import { PageHeader } from './global-components/page-header';
 import { IntroV2 } from './section-components/intro-v2';
-import { Footer_v1 } from './global-components/footer';
+import { FooterV1 } from './global-components/footer';
 import { Video } from './section-components/video';
 
 export const AboutPage = () => {
     return <div>
         <Navbar />
-        <Page_Header HeaderTitle="About Us"  />
+        <PageHeader HeaderTitle="About Us"  />
         <IntroV2 />
         <Video></Video>
-        <Footer_v1 />
+        <FooterV1 />
     </div>
 }
 

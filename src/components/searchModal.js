@@ -26,8 +26,6 @@ export const SearchModal = (props) => {
 
     const classes = useStyles();
 
-    let publicUrl = process.env.PUBLIC_URL + '/';
-
     const [openModal, setOpenModal] = useState(false);
 
     const [place, setPlace] = useState("");

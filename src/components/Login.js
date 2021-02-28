@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
-import { Page_Header } from './global-components/page-header';
-import { Footer_v1 } from './global-components/footer';
+import { PageHeader } from './global-components/page-header';
+import { FooterV1 } from './global-components/footer';
 import { Navbar } from './global-components/navbar';
 import { Box, Paper, Tab, Tabs, Typography } from '@material-ui/core';
 import { LoginView } from './section-components/LoginView';
@@ -42,7 +42,7 @@ export const Login = () =>{
     return (
         <div>
         <Navbar />
-        <Page_Header HeaderTitle={"Welcome to Envirify"}/>
+        <PageHeader HeaderTitle={"Welcome to Envirify"}/>
         <Paper elevation={20} style={paperStyle}>
             <Tabs
                 value={value}
@@ -61,7 +61,7 @@ export const Login = () =>{
                 <RegisterView></RegisterView>
             </TabPanel>
         </Paper>
-        <Footer_v1 />
+        <FooterV1 />
         </div>
     );
 }

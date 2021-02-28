@@ -1,4 +1,4 @@
-import { Avatar, Button, Checkbox, FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Paper, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
+import { Avatar, Button, FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Paper, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
 import React from 'react';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -107,7 +107,7 @@ export const RegisterView = () => {
                                 ></Field>
                                 <FormControl component="fieldset" style={{ marginTop: 20 }}>
                                     <FormLabel component="legend">Gender</FormLabel>
-                                    <Field as={RadioGroup} aria-label="gender" name="gender" name="gender" style={{ display: 'initial' }}>
+                                    <Field as={RadioGroup} aria-label="gender" name="gender" style={{ display: 'initial' }}>
                                         <FormControlLabel value="female" control={<Radio />} label="Female" />
                                         <FormControlLabel value="male" control={<Radio />} label="Male" />
                                     </Field>
