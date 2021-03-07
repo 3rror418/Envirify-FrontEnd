@@ -6,8 +6,10 @@ export const BookingResult = (props) => {
     return (
         <div>
             <Box justifyContent="center"
-                alignItems="flex-start"
+                flexDirection="row"
+                alignContent="flex-start"
                 display="flex"
+                flexWrap="wrap"
                 >
                 {props.items.map(item => (
                     <BookingCard showReservation={props.showReservation}

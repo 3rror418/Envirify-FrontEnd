@@ -6,10 +6,12 @@ import { PlaceCard } from './PlaceCard';
 export const PlaceResults = (props) => {
 
     return (
-        <div >
+        <>
             <Box justifyContent="center"
-                alignItems="flex-start"
+                flexDirection="row"
+                alignContent="flex-start"
                 display="flex"
+                flexWrap="wrap"
                 >
                 {props.items.map(item => (
                     <PlaceCard showReservation={props.showReservation}
@@ -25,6 +27,6 @@ export const PlaceResults = (props) => {
                         showEdit={props.showEdit}/>
                 ))}
             </Box>
-        </div>
+        </>
     );
 };

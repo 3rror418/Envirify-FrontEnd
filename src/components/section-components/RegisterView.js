@@ -1,12 +1,23 @@
-import { Avatar, Button, FormControl, FormControlLabel, FormHelperText, FormLabel, Grid, Paper, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
-import React from 'react';
+import { Avatar, Button, FormControl, FormControlLabel, FormLabel, Grid, Paper, Radio, RadioGroup, Typography } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import React, { useState } from 'react';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import Swal from 'sweetalert2';
+import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: 200,
+        },
+    },
+}));
 
 export const RegisterView = () => {
+
+    const classes = useStyles();
 
     const paperStyle = { padding: '30px 20px', width: 310, margin: "0px auto" };
 
@@ -14,41 +25,59 @@ export const RegisterView = () => {
 
     const avatarStyle = { backgroundColor: '#1bbd7e' }
 
-    const marginTop = { marginTop: 5 }
-
-    const initialValues = {
+    const [user, setuser] = useState({
         name: '',
         email: '',
         gender: '',
         phoneNumber: '',
         password: '',
         confirmPassword: ''
-    }
-
-    const onSubmit = (values, props) => {
-        
-        setTimeout(() => {
-            props.resetForm();
-            props.setSubmitting(false);
-            Swal.fire({
-                title: 'User registered!',
-                text: 'Continue',
-                icon: 'success',
-                confirmButtonText: 'Cool'
-            });
-        }, 2000)
-    }
-
-
-
-    const validationSchema = Yup.object().shape({
-        name: Yup.string().min(3, "It's too short!").required("Required"),
-        email: Yup.string().email("Enter valid email").required("Required"),
-        gender: Yup.string().oneOf(["male", "female"], "Required").required("Required"),
-        phoneNumber: Yup.number().typeError("Enter valid phone number").required("Required"),
-        password: Yup.string().min(9, "Password minimum length should be 8").required("Required"),
-        confirmPassword: Yup.string().oneOf([Yup.ref('password')], "Password not matched").required("Required")
     })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        let newUser = { ...user, [name]: value }
+        setuser(newUser)
+    }
+
+    const postUser = (newUser) => {
+        axios.post("http://localhost:8080/api/v1/users", newUser)
+            .then(response => {
+                console.log("Success")
+                Swal.fire({
+                    title: 'Yeah!',
+                    text: 'Register successful',
+                    timer: 2000,
+                    timerProgressBar: false,
+                    icon: 'success',
+                    showConfirmButton: false
+                })
+            }).catch(error => {
+                alert("Fallo de Conexión con DB");
+            });
+
+    }
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (user.password === user.confirmPassword) {
+            postUser(user)
+        }
+        setuser({
+            name: '',
+            email: '',
+            gender: '',
+            phoneNumber: '',
+            password: '',
+            confirmPassword: ''
+        }
+        )
+    }
+
+    const validateEmail = (email) => {
+        var re = /\S+@\S+\.\S+/;
+        const rta = (re.test(email) || email === "");
+        return rta;
+    }
 
     return (
         <Grid>
@@ -63,94 +92,55 @@ export const RegisterView = () => {
                         gutterBottom
                     >
                         Please fill this form to create an account
-                        </Typography>
+                    </Typography>
                 </Grid>
-                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-                    {(props) => {
-                        return (
-                            <Form>
-                                <Field
-                                    as={TextField}
-                                    fullWidth
-                                    name="name"
-                                    label='Name'
-                                    placeholder='Enter your name'
-                                    helperText={
-                                        <ErrorMessage name="name">
-                                            {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                        </ErrorMessage>}
-                                >
-                                </Field>
-                                <Field
-                                    as={TextField}
-                                    fullWidth
-                                    label='Email'
-                                    name="email"
-                                    placeholder='Enter your Email'
-                                    style={marginTop}
-                                    helperText={
-                                        <ErrorMessage name="email">
-                                            {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                        </ErrorMessage>}
-                                ></Field>
-                                <Field
-                                    as={TextField}
-                                    fullWidth
-                                    label='Phone number'
-                                    name="phoneNumber"
-                                    placeholder='Enter your phone number'
-                                    style={marginTop}
-                                    helperText={
-                                        <ErrorMessage name="phoneNumber">
-                                            {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                        </ErrorMessage>}
-                                ></Field>
-                                <FormControl component="fieldset" style={{ marginTop: 20 }}>
-                                    <FormLabel component="legend">Gender</FormLabel>
-                                    <Field as={RadioGroup} aria-label="gender" name="gender" style={{ display: 'initial' }}>
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                    </Field>
-                                </FormControl>
-                                <FormHelperText>
-                                    <ErrorMessage name="gender">
-                                        {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                    </ErrorMessage>
-                                </FormHelperText>
-                                <Field
-                                    as={TextField}
-                                    fullWidth
-                                    label='Password'
-                                    name="password"
-                                    placeholder='Enter your password'
-                                    style={marginTop}
-                                    type="password"
-                                    helperText={
-                                        <ErrorMessage name="password">
-                                            {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                        </ErrorMessage>}
-                                ></Field>
-                                <Field
-                                    as={TextField}
-                                    fullWidth
-                                    label='Confirm password'
-                                    name="confirmPassword"
-                                    placeholder='Confirm your password'
-                                    style={marginTop}
-                                    type="password"
-                                    helperText={
-                                        <ErrorMessage name="confirmPassword">
-                                            {msg => <div style={{ color: 'red' }}>{msg}</div>}
-                                        </ErrorMessage>}
-                                ></Field>
-                                <Button type='submit' disable={props.isSubmitting} variant='contained' color='primary'>
-                                    {props.isSubmitting ? "Loading" : "Sign up"}
-                                </Button>
-                            </Form>
-                        )
-                    }}
 
-                </Formik>
+                <form className={classes.root} onSubmit={onSubmit}>
+
+                    <FormControl margin="normal" fullWidth>
+
+                        <TextField required type="text" value={user.name} label="Name" name="name" autoFocus onChange={handleChange} variant="standard" />
+                    </FormControl>
+
+                    <FormControl margin="normal" required fullWidth>
+                        <TextField required
+                            error={!validateEmail(user.email)}
+                            label="Email"
+                            helperText={!validateEmail(user.email) ? "Incorrect email." : ""}
+                            name={"email"}
+                            value={user.email}
+                            onChange={handleChange}
+                            variant="standard"
+                        />
+
+                    </FormControl>
+                    <FormControl margin="normal"  >
+
+                        <TextField required fullWidth type="number" value={user.phoneNumber} label="Phone Number" name="phoneNumber" onChange={handleChange} variant="standard" />
+                    </FormControl>
+
+                    <FormControl component="fieldset" style={{ marginTop: 20 }}>
+                        <FormLabel component="legend">Gender</FormLabel>
+                        <RadioGroup aria-label="gender" name="gender"  >
+                            <FormControlLabel value="female" onChange={handleChange} control={<Radio />} label="Female" />
+                            <FormControlLabel value="male" onChange={handleChange} control={<Radio />} label="Male" />
+                            <FormControlLabel value="other" onChange={handleChange} control={<Radio />} label="Other" />
+                        </RadioGroup>
+                    </FormControl>
+
+                    <FormControl margin="normal" >
+                        <TextField required fullWidth type="password" value={user.password} label="Password" name="password" onChange={handleChange} variant="standard" />
+                    </FormControl>
+
+                    <FormControl margin="normal" required fullWidth>
+                        <TextField required fullWidth type="password" value={user.confirmPassword} label="Confirm Password" name="confirmPassword" onChange={handleChange} variant="standard" />
+                    </FormControl>
+
+                    <Button type='submit' variant='contained' color='primary'>
+                        {"Sign up"}
+                    </Button>
+
+                </form>
             </Paper>
         </Grid>
     );
