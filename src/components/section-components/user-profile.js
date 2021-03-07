@@ -60,7 +60,7 @@ export const UserProfile = () => {
 									</li>
 								</ul>
 							</div>
-							<div className="col-xl-7 col-lg-8 offset-xl-1">
+							<div className="col">
 								<div className="tab-content user-tab-content">
 									<div className="tab-pane fade show active" id="tabs_1">
 										<div className="user-details">
@@ -191,7 +191,7 @@ export const UserProfile = () => {
 										<Reviews></Reviews>
 									</div>
 
-									<div className="tab-pane fade" id="tabs_7">
+									<div className="tab-pane fade"  id="tabs_7">
 										<PlacesList />
 									</div>
 

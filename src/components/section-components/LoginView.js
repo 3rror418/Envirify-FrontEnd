@@ -53,19 +53,19 @@ export const LoginView = ({handleChange}) =>{
                 </Grid>
                 <TextField 
                     label='Username' 
-                    placeholder = 'Enter username' 
                     fullWidth required 
                     style={marginTop}
                     onChange={handleUsernameChange}
+                    variant="standard"
                 />
                 <br/>  
                 <TextField 
                     label='Password' 
-                    placeholder = 'Enter password' 
                     type ='password' 
                     fullWidth required 
                     style={marginTop}
                     onChange={handlePasswordChange}
+                    variant="standard"
                 />
                 <FormControlLabel
                     control={

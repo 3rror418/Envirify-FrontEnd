@@ -36,10 +36,8 @@ export const RegisterView = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(value)
         let newUser = { ...user, [name]: value }
         setuser(newUser)
-        console.log(user)
     }
 
     const postUser = (newUser) => {

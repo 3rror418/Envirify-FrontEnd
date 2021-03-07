@@ -31,10 +31,10 @@ export const BookingsList = () => {
 
     return (
        
-            <div className="user-details">
+        <>
             <h3 className="user-details-title">Your Bookings</h3>
             <BookingResult items={items} showReservation={false} showOwner={false} showEdit={false}/>
-        </div>
+        </>
             
         
     )
