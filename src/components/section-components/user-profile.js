@@ -26,6 +26,8 @@ export const UserProfile = () => {
 
 	const logOut = (e) =>{
 		localStorage.removeItem('isLoggedIn');
+		localStorage.removeItem('Authentication');
+		localStorage.removeItem('idUser');
 		window.location.href = "/profile";
     }
 

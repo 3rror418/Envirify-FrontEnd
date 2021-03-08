@@ -81,10 +81,10 @@ export const Navbar = () => {
 						<li hidden={localStorage.getItem("isLoggedIn")}>
 							<Link to="/login">Log In / Sign Up</Link>
 						</li>
-						<li>
+						<li hidden={!localStorage.getItem("isLoggedIn")}>
 							<Link to="/profile">Profile</Link>
 						</li>
-						<li>
+						<li hidden={!localStorage.getItem("isLoggedIn")}>
 							<Link to="/create">New Lodging</Link>
 						</li>
 					</ul>

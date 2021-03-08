@@ -13,9 +13,6 @@ import { Login } from './components/Login';
 
 export const Home = () => {
 
-    localStorage.setItem('username', "nicolasaguileracontreras@gmail.com");
-    localStorage.setItem('password', "nicolas123");
-
     const LoginView = () => ( <Login/> );
 
     const SearchView = () => (<SearchPlace />);
