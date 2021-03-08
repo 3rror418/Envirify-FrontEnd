@@ -10,9 +10,6 @@ import { BannerV2 } from './section-components/banner-v2';
 import { ReviewModal } from './ReviewModal';
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
   } from "react-router-dom";
 

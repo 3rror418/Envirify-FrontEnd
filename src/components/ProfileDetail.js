@@ -19,10 +19,11 @@ export const ProfileDetail = () => {
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    const emailUser = getParameterByName("user");
+    
 
     useEffect(() => {
         async function fetchMyAPI() {
+            const emailUser = await getParameterByName("user");
             let response = await fetch(`https://enfiry-back-end.herokuapp.com/api/v1/users/${emailUser}`)
             response = await response.json()
             setuser(response)
