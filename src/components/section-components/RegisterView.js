@@ -41,7 +41,7 @@ export const RegisterView = () => {
     }
 
     const postUser = (newUser) => {
-        axios.post("http://localhost:8080/api/v1/users", newUser)
+        axios.post("http://enfiry-back-end.herokuapp.com/api/v1/users", newUser)
             .then(response => {
                 console.log("Success")
                 Swal.fire({
