@@ -21,8 +21,6 @@ export const ProfileDetail = () => {
 
     
 
-    
-
     useEffect(() => {
         async function fetchMyAPI() {
             const emailUser = await getParameterByName("user");
