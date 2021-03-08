@@ -9,6 +9,7 @@ import { UserProfilePage } from './components/User';
 import { CreatePlace } from './components/CreatePlace';
 import { UpdateLodging } from './components/UpdateLodging';
 import { Login } from './components/Login';
+import { ProfileDetail } from './components/ProfileDetail';
 
 
 export const Home = () => {
@@ -18,6 +19,8 @@ export const Home = () => {
     const SearchView = () => (<SearchPlace />);
 
     const PlaceView = () => (<PlaceInfo />)
+
+    const ProfileView = () => (<ProfileDetail/>)
 
     return (
         <div>
@@ -29,6 +32,7 @@ export const Home = () => {
                         <Route path="/contact" component={ContactPage} />
                         <Route path="/search" component={SearchView} />
                         <Route path="/place" component={PlaceView} />
+                        <Route path="/user" component={ProfileView} />
                         <Route path="/profile" component={localStorage.getItem('isLoggedIn')==="true" ? UserProfilePage:LoginView} />
                         <Route path="/create" component={CreatePlace} />
                         <Route path="/update" component={UpdateLodging} />

@@ -9,6 +9,12 @@ import { FooterV1 } from './global-components/footer';
 import { BannerV2 } from './section-components/banner-v2';
 import { ReviewModal } from './ReviewModal';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 export const PlaceInfo = () => {
 
@@ -18,7 +24,8 @@ export const PlaceInfo = () => {
         departament: "Cundinamarca",
         calification: 3.5,
         description: "Una bonita cabaña de madera con un cuarto y un baño.",
-        owner: "Pepe Gomez"
+        owner: "Pepe Gomez",
+        email:"nicolas@gmail.com"
     };
 
 
@@ -67,8 +74,11 @@ export const PlaceInfo = () => {
                                     <Typography variant="h4">Description:</Typography>
                                     <Typography variant="h5">{mockInfo.description}</Typography>
                                     <Typography variant="h4">Owner:</Typography>
-                                    <Typography variant="h5">{mockInfo.owner}</Typography>
-
+                                    
+                                    <Link to={"/user?user="+mockInfo.email} style={{color:"black"}}>
+                                    <Typography variant="h5" >{mockInfo.owner} </Typography>
+                                    </Link>
+                                    
                                     <br></br>
                                     {showReservation && <ReservationModal sumbitBook={sumbitBookHandler} />}
                                     <br></br>
