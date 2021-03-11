@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 
 
 
-export const LoginView = ({handleChange}) =>{
+export const LoginView = ({ handleChange }) => {
 
-    const paperStyle={padding: 20, height : '70vh' , width : 310 , margin:"0px auto"}
-    const btnStyle={margin:'8px 0'}
-    const avatarStyle={backgroundColor:'#1bbd7e'}
-    const marginTop = {marginTop:5}
+    const paperStyle = { padding: 20, height: '70vh', width: 310, margin: "0px auto" }
+    const btnStyle = { margin: '8px 0' }
+    const avatarStyle = { backgroundColor: '#1bbd7e' }
+    const marginTop = { marginTop: 5 }
 
     const [login, setLogin] = useState({
         email: '',
@@ -52,31 +52,31 @@ export const LoginView = ({handleChange}) =>{
                     icon: 'success',
                     showConfirmButton: false
                 });
-                localStorage.setItem('isLoggedIn',true);
-                localStorage.setItem('Authentication',response.data.jwt);
-                localStorage.setItem('idUser',response.data.id);
-                localStorage.setItem('emailUser',response.data.email);
+                localStorage.setItem('isLoggedIn', true);
+                localStorage.setItem('Authentication', response.data.jwt);
+                localStorage.setItem('idUser', response.data.id);
+                localStorage.setItem('emailUser', response.data.email);
                 window.location.href = "/profile";
-                console.log(response);
+
             }).catch(error => {
                 Swal.fire({
                     title: 'Bad credentials!',
                     text: 'Continue',
                     icon: 'error',
                     confirmButtonText: 'Cool'
-                  });
+                });
             });
     }
 
     return (
         <div>
-        <Grid>
-            <Paper  style={paperStyle}>
-                <Grid align="center">
-                    <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                    <h3>Sign in</h3>
-                </Grid>
-                <FormControl margin="normal" required fullWidth>
+            <Grid>
+                <Paper style={paperStyle}>
+                    <Grid align="center">
+                        <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
+                        <h3>Sign in</h3>
+                    </Grid>
+                    <FormControl margin="normal" required fullWidth>
                         <TextField required
                             error={!validateEmail(login.email)}
                             label="Email"
@@ -87,38 +87,38 @@ export const LoginView = ({handleChange}) =>{
                             variant="standard"
                         />
                     </FormControl>
-                <br/>  
-                <TextField 
-                    label='Password' 
-                    type ='password' 
-                    name={"password"}
-                    fullWidth required 
-                    style={marginTop}
-                    onChange={handleValueChange}
-                    variant="standard"
-                />
-                <Button
-                    type='submit' 
-                    color='primary' 
-                    style = {btnStyle} 
-                    variant = 'contained' 
-                    fullWidth required
-                    onClick = {onSubmit}
-                >
+                    <br />
+                    <TextField
+                        label='Password'
+                        type='password'
+                        name={"password"}
+                        fullWidth required
+                        style={marginTop}
+                        onChange={handleValueChange}
+                        variant="standard"
+                    />
+                    <Button
+                        type='submit'
+                        color='primary'
+                        style={btnStyle}
+                        variant='contained'
+                        fullWidth required
+                        onClick={onSubmit}
+                    >
                         Sign in
                 </Button>
-                <Typography align="left">
-                <Link to="/login">
-                    Forgot password?    
+                    <Typography align="left">
+                        <Link to="/login">
+                            Forgot password?
                 </Link>
-                </Typography >
-                <Typography align="left"> Don't you have an account? &nbsp;
-                <Link href="#" to="/login" style={{ color: 'blue' }} onClick ={() => handleChange("event",1)}>
-                    Sign up
+                    </Typography >
+                    <Typography align="left"> Don't you have an account? &nbsp;
+                <Link href="#" to="/login" style={{ color: 'blue' }} onClick={() => handleChange("event", 1)}>
+                            Sign up
                 </Link>
-                </Typography>
-            </Paper>
-        </Grid>
+                    </Typography>
+                </Paper>
+            </Grid>
         </div>
     );
 }
