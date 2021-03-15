@@ -16,9 +16,3 @@ test('Should Search A Place', () => {
   searchProccess("");
   expect(screen.getByText(/No results Found!/i)).toBeInTheDocument();
 });
-
-test('Should See Results Of A Place', () => {
-  render(<Home />)
-  searchProccess("Cundinamarca");
-  expect(screen.getByText(/Cabaña A/i)).toBeInTheDocument();
-});
