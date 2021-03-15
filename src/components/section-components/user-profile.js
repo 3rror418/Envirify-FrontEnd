@@ -45,9 +45,9 @@ export const UserProfile = () => {
 
 	const handleOnChange = (e) => {
 		const {name,value} = e.target;
-		let user = {...newuser, [name]:value};
-		console.log(user);
-		setNewUser(user);
+		const userNew = {...newuser, [name]:value};
+		console.log(userNew);
+		setNewUser(userNew);
 	}
 
 	console.log(oldEmail);
