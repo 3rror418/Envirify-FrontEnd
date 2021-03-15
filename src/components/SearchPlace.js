@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import { PlaceResults } from './PlaceResults';
 import { Navbar } from './global-components/navbar';
@@ -7,31 +8,7 @@ import { FooterV1 } from './global-components/footer';
 
 export const SearchPlace = (props) => {
 
-    const items = [{
-        id: 1,
-        name: "Cabaña A",
-        city: "Ubate",
-        departament: "Cundinamarca",
-        calification: 3.5,
-        description: "Una bonita cabaña de madera con un cuarto y un baño.",
-        owner: "Pepe Gomez"
-    }, {
-        id: 2,
-        name: "Cabaña B",
-        city: "Fuquene",
-        departament: "Cundinamarca",
-        calification: 2.5,
-        description: "Una bonita cabaña de madera con dos cuartos y un baño.",
-        owner: "Pepe Gomez"
-    }, {
-        id: 3,
-        name: "Casa",
-        city: "San Gil",
-        departament: "Santander",
-        calification: 3.2,
-        description: "Casa de Marmol con cuatro cuartos y tres baños.",
-        owner: "Pepe Gomez"
-    }];
+    const [items, setItems] = useState([]);
 
     const getParameterByName = (name) => {
         name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
@@ -40,7 +17,20 @@ export const SearchPlace = (props) => {
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    const place = getParameterByName("value");
+    useEffect(() => {
+        axios.get("https://enfiry-back-end.herokuapp.com/api/v1/places?search=" + getParameterByName("value"))
+            .then(res => {
+                console.log(res);
+                setItems(res.data);
+            }).catch(error => {
+                const response = error.response;
+                if(response.status === 404){
+                    alert(response.data);
+                } else {
+                    alert("Fallo de Conexión con el BackEnd");
+                }
+            });
+    }, []);
 
     let resultComponent = (
         <Typography variant="h4">
@@ -48,20 +38,14 @@ export const SearchPlace = (props) => {
         </Typography>
     );
 
-    let itemResults = [];
-
-    if (place !== "") {
-        itemResults = items.filter(item => item.city === place || item.departament === place);
-    }
-
-    if (itemResults.length > 0) {
-        resultComponent = (<PlaceResults items={itemResults} showOwner={true} showEdit={false} showReservation={true}/>);
+    if (items.length > 0) {
+        resultComponent = (<PlaceResults items={items} showOwner={true} showEdit={false} showReservation={true} />);
     }
 
     return (
         <div>
             <Navbar />
-            <PageHeader HeaderTitle={"Results for: "+place}  />
+            <PageHeader HeaderTitle={"Results for: " + getParameterByName("value")} />
             <br></br>
             <br></br>
             {resultComponent}

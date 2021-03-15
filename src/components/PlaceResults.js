@@ -19,10 +19,11 @@ export const PlaceResults = (props) => {
                         id={item.id}
                         name={item.name}
                         city={item.city}
-                        departament={item.departament}
+                        department={item.department}
                         calification={item.calification}
                         description={item.description}
                         owner={item.owner} 
+                        image={item.urlImage}
                         showOwner={props.showOwner}
                         showEdit={props.showEdit}/>
                 ))}
