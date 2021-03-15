@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Rating from '@material-ui/core/Rating';
@@ -8,23 +9,11 @@ import { Navbar } from './global-components/navbar';
 import { FooterV1 } from './global-components/footer';
 import { BannerV2 } from './section-components/banner-v2';
 import { ReviewModal } from './ReviewModal';
-
-import {
-    Link
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const PlaceInfo = () => {
 
-    const mockInfo = {
-        name: "Cabaña A",
-        city: "Ubate",
-        departament: "Cundinamarca",
-        calification: 3.5,
-        description: "Una bonita cabaña de madera con un cuarto y un baño.",
-        owner: "Pepe Gomez",
-        email:"nicolas@gmail.com"
-    };
-
+    const [info, setInfo] = useState({});
 
     const getParameterByName = (name) => {
         name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
@@ -36,6 +25,20 @@ export const PlaceInfo = () => {
     const id = getParameterByName("id");
     const showReservation = (getParameterByName("showReservation") === 'true');
 
+    useEffect(() => {
+        axios.get("https://enfiry-back-end.herokuapp.com/api/v1/places/" + getParameterByName("id"))
+            .then(res => {
+                setInfo(res.data);
+            }).catch(error => {
+                const response = error.response;
+                if (response.status === 404) {
+                    alert(response.data);
+                } else {
+                    alert("Fallo de Conexión con el BackEnd");
+                }
+            });
+    }, []);
+
     const sumbitBookHandler = (start, end) => {
         //AQUI SE DEBE HACER EL POST DE LA SOLICITUD CON EL ID DEL LUGAR Y EL RANGO DE FECHAS.
         const message = "Solicitud para el lugar con el " + id + " fue aceptada de " + start.toLocaleString() + " hasta " + end.toLocaleString();
@@ -44,13 +47,12 @@ export const PlaceInfo = () => {
 
     let PlaceInformation = (
         <Typography variant="h4">
-            There is no place!
+            Non Existent Place!
         </Typography>
     );
 
-    if (id !== "") {
-        // const placeId = parseInt(id);
-        //AQUI SE BUSCARIA LA INFORMACION DEL LUGAR CON EL PLACE ID, EN VEZ DE USAR MOCK INFO.
+    if (info.id !== undefined) {
+        //LA CALIFICACION ES EL PROMEDIO DE LSO PUNTOS DE LOS COMENTARIOS, CAMBIAR EL 3.5 QUEMADO.
         PlaceInformation = (
             <div >
                 <CssBaseline />
@@ -59,23 +61,23 @@ export const PlaceInfo = () => {
                         <div className="row">
                             <div className="col-xl-5 col-lg-6 align-self-center wow animated fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s">
                                 <div className="section-title mb-lg-0 mb-4 text-center text-lg-left">
-                                    <h2 className="title">{mockInfo.name}</h2>
-                                    <h3>{mockInfo.city + ", " + mockInfo.departament}</h3>
+                                    <h2 className="title">{info.name}</h2>
+                                    <h3>{info.city + ", " + info.department}</h3>
                                     <Typography variant="h4">Calification: <Rating
                                         name="calification"
-                                        value={mockInfo.calification}
+                                        value={3.5}
                                         precision={0.5}
                                         size="large"
                                         readOnly
                                     /></Typography>
                                     <Typography variant="h4">Description:</Typography>
-                                    <Typography variant="h5">{mockInfo.description}</Typography>
+                                    <Typography variant="h5">{info.description}</Typography>
                                     <Typography variant="h4">Owner:</Typography>
-                                    
-                                    <Link to={"/user?user="+mockInfo.email} style={{color:"black"}}>
-                                    <Typography variant="h5" >{mockInfo.owner} </Typography>
+
+                                    <Link to={"/user?user=" + info.owner} style={{ color: "black" }}>
+                                        <Typography variant="h5" >{info.owner} </Typography>
                                     </Link>
-                                    
+
                                     <br></br>
                                     {showReservation && <ReservationModal sumbitBook={sumbitBookHandler} />}
                                     <br></br>
@@ -87,7 +89,7 @@ export const PlaceInfo = () => {
                                     <div>
                                         <Avatar variant="square"
                                             style={{ width: "500px", height: "400px" }}
-                                            src="https://a0.muscache.com/pictures/0c0fb5c1-8480-4561-baec-d3b1d913cbf9.jpg" />
+                                            src={info.urlImage} />
                                     </div>
                                 </div>
                             </div>
