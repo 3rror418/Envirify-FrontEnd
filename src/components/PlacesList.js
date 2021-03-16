@@ -1,38 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PlaceResults } from './PlaceResults';
+import axios from 'axios';
 
 export const PlacesList = (props) => {
 
-    const items = [{
-        id: 1,
-        name: "Cabaña A",
-        city: "Ubate",
-        departament: "Cundinamarca",
-        calification: 3.5,
-        description: "Una bonita cabaña de madera con un cuarto y un baño.",
-        owner: "Pepe Gomez"
-    }, {
-        id: 2,
-        name: "Cabaña B",
-        city: "Fuquene",
-        departament: "Cundinamarca",
-        calification: 2.5,
-        description: "Una bonita cabaña de madera con dos cuartos y un baño.",
-        owner: "Pepe Gomez"
-    }, {
-        id: 3,
-        name: "Casa",
-        city: "San Gil",
-        departament: "Santander",
-        calification: 3.2,
-        description: "Casa de Marmol con cuatro cuartos y tres baños.",
-        owner: "Pepe Gomez"
-    }];
+
+    const headers = {
+        'X-Email': localStorage.getItem("emailUser")
+    }
+
+    const [places, setplaces] = useState([])
+    
+    useEffect(() => {
+        axios.get("https://enfiry-back-end.herokuapp.com/api/v1/places/myplaces", {
+            headers: headers
+        })
+        .then(res => {
+                console.log(res);
+                setplaces(res.data);
+            }).catch(error => {
+                const response = error.response;
+                if(response.status === 404){
+                    const message = response.data
+                } else {
+                    alert("Fallo de Conexión con el BackEnd");
+                }
+            });
+    }, []);
 
     return (
         <>
             <h3 className="user-details-title">Your Places</h3>
-            <PlaceResults showReservation={true} items={items} showOwner={false} showEdit/>
+            {places.length===0? <h3> There are not places created by you </h3>:<PlaceResults showReservation={true} items={places} showOwner={false} showEdit/>}
         </>
     );
 };
