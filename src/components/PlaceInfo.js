@@ -79,9 +79,9 @@ export const PlaceInfo = () => {
                                     </Link>
 
                                     <br></br>
-                                    {showReservation && <ReservationModal sumbitBook={sumbitBookHandler} />}
+                                    {(showReservation && localStorage.getItem('isLoggedIn')) && <ReservationModal sumbitBook={sumbitBookHandler} />}
                                     <br></br>
-                                    {<ReviewModal></ReviewModal>}
+                                    {localStorage.getItem('isLoggedIn')&&<ReviewModal></ReviewModal>}
                                 </div>
                             </div>
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
