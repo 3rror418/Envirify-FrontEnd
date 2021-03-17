@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { EditPlaceModal } from './EditPlaceModal';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -107,9 +108,7 @@ export const PlaceCard = (props) => {
                         {props.showOwner && <Typography gutterBottom>
                             {"Dueño: " + props.owner}
                         </Typography>}
-                        {props.showEdit && <Button variant="contained" style={{ marginTop: "10px", marginRight: "10px" }} color="primary" onClick={event => window.location.href = '/update'}>
-                            Edit
-                            </Button>}
+                        {props.showEdit && <EditPlaceModal place={props}></EditPlaceModal>}
 
                         {props.showEdit && <Button variant="contained" color="primary" style={{ marginTop: "10px" }} onClick={handleDelete} >
                             Delete
