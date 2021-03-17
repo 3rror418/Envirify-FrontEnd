@@ -8,6 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +36,17 @@ export const PlaceCard = (props) => {
 
     const classes = useStyles();
 
-    const handleDelete = () => {
+
+    const headers = {
+        'X-Email': localStorage.getItem("emailUser")
+    }
+
+
+    const handleDelete = (e) => {
+
+        e.preventDefault()
+
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -47,17 +58,33 @@ export const PlaceCard = (props) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                Swal.fire(
-                    'Deleted!',
-                    'Your lodging has been deleted.',
-                    'success'
-                ).then(function () {
-                    window.location.href = "/profile"
+
+                let id = props.id;
+
+                axios.delete("https://enfiry-back-end.herokuapp.com/api/v1/places/" + id, {
+                    headers: headers
                 })
+                    .then(response => {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your lodging has been deleted',
+                            'success'
+                        ).then(function () {
+                            window.location.href = "/profile"
+                        })
+                        
+                    }).catch(error => {
+                        console.log(error);
+                        Swal.fire({
+                            title: 'Refused!',
+                            text: 'Continue',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                        });
+                    });
             }
         })
     }
-
 
     return (
         <div>
