@@ -1,41 +1,116 @@
-import React from 'react'
-import Swal from 'sweetalert2'
-import { Form } from './Form';
+import React, { useState } from 'react'
 
-export const FormUpdate = () => {
-    const mock = {
-        name: "Cabaña A",
-        city: "Ubate",
-        departament: "Cundinamarca",
-        calification: 3.5,
-        description: "Una bonita cabaña de madera con un cuarto y un baño.",
-        direction: "km 5 ubate finca la milagrosa"
-    };
+export const FormUpdate = ({ placeInfo, handleOnClick }) => {
+
+    const[place , setPlace] = useState({
+        id:placeInfo.id,
+        name:placeInfo.name,
+        urlImage:placeInfo.image,
+        department:placeInfo.department,
+        city:placeInfo.city,
+        description:placeInfo.description,
+        
+    });
+
+    const {name,urlImage,department,city,description} = place;
+
+    const handleNameChange = (e) => {
+        setPlace({
+            ...place,
+            name : e.target.value
+        });
+    }
+
+    const handleDepartmentChange = (e) => {
+        setPlace({
+            ...place,
+            department : e.target.value
+        });
+    }
+
+    const handleCityChange = (e) => {
+        setPlace({
+            ...place,
+            city : e.target.value
+        });
+    }
+
+    const handleDescriptionChange = (e) => {
+        setPlace({
+            ...place,
+            description : e.target.value
+        });
+    }
+
+    const handleImageChange = (e) => {
+        setPlace({
+            ...place,
+            urlImage : e.target.value
+        });
+    }
+
+    const handleSubmit = () => {
+        setPlace({
+            id:"",
+            name:"",
+            urlImage:"",
+            department:"",
+            city:"",
+            description:"",
+            
+        });
+    }
+
 
     const handleClick = () => {
-        Swal.fire({
-            title: 'Confirm',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, update it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Updated!',
-                    'Your lodging has been updated',
-                    'success'
-                ).then(function(){
-                    window.location.href="/profile"
-                })
-            }
-        })
+        handleOnClick(place);
+        handleSubmit();
+
     }
 
     return (
         <div>
-            <Form mockInfo={mock} handleOnClick={handleClick} nameButton="Update" ></Form>
+            <div class="row">
+            <div class="col-md-4">
+                <label className="single-input-wrap style-two">
+                    <span className="single-input-title">Name</span>
+                    <input type="text" value={name} onChange={handleNameChange} />                </label>
+                </div>
+                <div class="col-md-4">
+                <label className="single-input-wrap style-two">
+                    <span className="single-input-title">Department</span>
+                    <input type="text" value={department} onChange={handleDepartmentChange} />
+                </label>
+                </div>
+                <div class="col-md-4">
+                <label className="single-input-wrap style-two">
+                                <span className="single-input-title">City</span>
+                                <input type="text" value={city} onChange={handleCityChange} />
+                            </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                <label className="single-input-wrap style-two">
+                    <span className="single-input-title">Url Image</span>
+                    <input type="text" value={urlImage} onChange={handleImageChange} /> </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                <label className="single-input-wrap style-two">
+                                <span className="single-input-title">Description</span>
+                                <textarea value={description} onChange={handleDescriptionChange} />
+                            </label>
+                </div>
+
+            </div>
+
+            <div style={{ textAlign: "center" }}>
+                    <div style={{ width: "50%", display: "inline-block", textAlign: "left" }}>
+                        <button className="btn btn-yellow mt-3 text-center" onClick={handleClick}>Submit Changes</button>
+                    </div>
+                </div>
         </div>
     )
 }
