@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import { storage } from '../firebase'
 
 
 export const FormCreate = () => {
@@ -25,11 +26,12 @@ export const FormCreate = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         let newPlace = { ...place, [name]: value }
-        console.log(value)
+        console.log(newPlace)
         setplace(newPlace)
     }
 
     const postPlace = (place) => {
+        console.log("place", place)
         axios.post("https://enfiry-back-end.herokuapp.com/api/v1/places", place, {
             headers: headers
         })
@@ -60,25 +62,9 @@ export const FormCreate = () => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, create it!'
         }).then((result) => {
-            const url = place.urlImage
-            const extension = url.substr(url.lastIndexOf('.') + 1)
-
             if (result.isConfirmed) {
-                if (extension === "png" || extension === "jpg") {
-                    postPlace(place)
-                }
-                else{
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'The url is not a image',
-                      })
-
-                }
+                postPlace(place)
             }
-
-            
-
         })
 
         setplace({
@@ -92,6 +78,38 @@ export const FormCreate = () => {
             habitations: 0,
             bathrooms: 0
         })
+    }
+
+    const [image, setimage] = useState(null)
+
+    const handleImageChange = (e) => {
+        if (e.target.files[0]) {
+            setimage(e.target.files[0])
+
+        }
+    }
+
+    const handleUpload = async () => {
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        await uploadTask.on(
+            "state_changed",
+            snapshot => { },
+            error => {
+                console.log(error)
+            },
+            () => {
+                storage
+                    .ref("images")
+                    .child(image.name)
+                    .getDownloadURL()
+                    .then(url => {
+                        let newPlace = { ...place, ["urlImage"]: url }
+                        console.log("new", newPlace)
+                        setplace(newPlace)
+                    })
+            }
+        )
+
     }
 
 
@@ -148,17 +166,23 @@ export const FormCreate = () => {
                                 <textarea name="description" value={place.description} onChange={handleChange} />
                             </label>
                         </div>
+
+
                         <div className="col-lg-12">
                             <label className="single-input-wrap style-two">
-                                <span className="single-input-title">Url Image</span>
-                                <input type="text" name="urlImage" value={place.urlImage} onChange={handleChange} />
+                                <span className="single-input-title">Image</span>
+                                <input type="file" onChange={handleImageChange} />
+
                             </label>
                         </div>
+
                     </div>
                 </form>
 
                 <div style={{ textAlign: "center" }}>
                     <div style={{ width: "50%", display: "inline-block", textAlign: "left" }}>
+                        <button className="btn btn-yellow mt-3 text-center" onClick={handleUpload}>Upload image</button>
+                        <br></br>
                         <button className="btn btn-yellow mt-3 text-center" onClick={onSubmit}>Add</button>
                     </div>
                 </div>

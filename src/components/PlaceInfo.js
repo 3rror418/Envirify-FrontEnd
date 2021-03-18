@@ -29,6 +29,7 @@ export const PlaceInfo = () => {
         axios.get("https://enfiry-back-end.herokuapp.com/api/v1/places/" + getParameterByName("id"))
             .then(res => {
                 setInfo(res.data);
+                console.log(res.data)
             }).catch(error => {
                 const response = error.response;
                 if (response.status === 404) {
