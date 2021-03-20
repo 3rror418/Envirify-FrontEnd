@@ -10,6 +10,7 @@ import { FooterV1 } from './global-components/footer';
 import { BannerV2 } from './section-components/banner-v2';
 import { ReviewModal } from './ReviewModal';
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 export const PlaceInfo = () => {
 
@@ -41,9 +42,36 @@ export const PlaceInfo = () => {
     }, []);
 
     const sumbitBookHandler = (start, end) => {
-        //AQUI SE DEBE HACER EL POST DE LA SOLICITUD CON EL ID DEL LUGAR Y EL RANGO DE FECHAS.
-        const message = "Solicitud para el lugar con el " + id + " fue aceptada de " + start.toLocaleString() + " hasta " + end.toLocaleString();
-        alert(message);
+        //FORMATO YYYY-MM-DD
+        const newBooking = {
+            initialDate: start.toISOString().substring(0, 10),
+            finalDate: end.toISOString().substring(0, 10),
+            placeId: id
+        };
+        const headers = {
+            "X-Email": localStorage.getItem("emailUser"),
+            "Authorization": "Bearer " + localStorage.getItem("Authentication")
+        }
+        axios.post("https://enfiry-back-end.herokuapp.com/api/v1/books", newBooking, { headers: headers })
+            .then(res => {
+                Swal.fire({
+                    title: 'Yeah!',
+                    text: 'Booking Created',
+                    timer: 2000,
+                    timerProgressBar: false,
+                    icon: 'success',
+                    showConfirmButton: false
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Booking Failed',
+                    text: error.response.data,
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                });
+            });
+
     };
 
     let PlaceInformation = (
@@ -82,7 +110,7 @@ export const PlaceInfo = () => {
                                     <br></br>
                                     {(showReservation && localStorage.getItem('isLoggedIn')) && <ReservationModal sumbitBook={sumbitBookHandler} />}
                                     <br></br>
-                                    {localStorage.getItem('isLoggedIn')&&<ReviewModal></ReviewModal>}
+                                    {localStorage.getItem('isLoggedIn') && <ReviewModal></ReviewModal>}
                                 </div>
                             </div>
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
