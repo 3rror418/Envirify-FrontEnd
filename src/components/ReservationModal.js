@@ -100,10 +100,10 @@ export const ReservationModal = (props) => {
                                     />
                                 </LocalizationProvider>
                             </FormControl>
-                            <Button variant="contained" color="primary" onClick={sumbitHandler}>
-                                Book
-                            </Button>
                         </form>
+                        <Button variant="contained" color="primary" onClick={sumbitHandler}>
+                            Book
+                        </Button>
                     </div>
                 </Fade>
             </Modal>
