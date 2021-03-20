@@ -68,7 +68,7 @@ export const PlaceInfo = () => {
                     title: 'Booking Failed',
                     text: error.response.data,
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Ok'
                 });
             });
 
