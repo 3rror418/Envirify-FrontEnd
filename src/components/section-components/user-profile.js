@@ -12,51 +12,49 @@ export const UserProfile = () => {
 	let oldEmail = localStorage.getItem('emailUser');
 
 	const [user, setuser] = useState({
-        name: "",
-        email: "",
-        phoneNumber: "",
+		name: "",
+		email: "",
+		phoneNumber: "",
 		gender: ""
-    })
+	})
 
 	const [newuser, setNewUser] = useState({
 		id: "",
-        name: "",
-        email: "",
-        phoneNumber: "",
+		name: "",
+		email: "",
+		phoneNumber: "",
 		gender: "",
 		places: [],
 		books: [],
 		chats: []
-    })
+	})
 
 	useEffect(() => {
-        async function fetchMyAPI() {
+		async function fetchMyAPI() {
 
 			let email = await localStorage.getItem('emailUser');
 
-	let response = await fetch("https://enfiry-back-end.herokuapp.com/api/v1/users/" + email)
-		response = await response.json();
-		setuser(response);
-		setNewUser(response);
-        }
-        fetchMyAPI()
+			let response = await fetch("https://enfiry-back-end.herokuapp.com/api/v1/users/" + email)
+			response = await response.json();
+			setuser(response);
+			setNewUser(response);
+		}
+		fetchMyAPI()
 
-    }, [])
+	}, [])
 
 	const handleOnChange = (e) => {
-		const {name,value} = e.target;
-		const userNew = {...newuser, [name]:value};
+		const { name, value } = e.target;
+		const userNew = { ...newuser, [name]: value };
 		console.log(userNew);
 		setNewUser(userNew);
 	}
-
-	console.log(oldEmail);
 
 	const handleSubmit = (e) => {
 
 		e.preventDefault()
 
-		axios.put("https://enfiry-back-end.herokuapp.com/api/v1/users/"+ oldEmail , newuser)	
+		axios.put("https://enfiry-back-end.herokuapp.com/api/v1/users/" + oldEmail, newuser)
 			.then(response => {
 				Swal.fire({
 					title: 'Yeah!',
@@ -67,7 +65,7 @@ export const UserProfile = () => {
 					showConfirmButton: false
 				});
 				console.log(response.data);
-				console.log("hola",oldEmail+newuser)
+				console.log("hola", oldEmail + newuser)
 			}).catch(error => {
 				console.log(error);
 				Swal.fire({
@@ -100,9 +98,6 @@ export const UserProfile = () => {
 									</li>
 									<li className="nav-item">
 										<a className="nav-link" data-toggle="tab" href="#tabs_3"><i className="fa fa-cog" />Edit Profile</a>
-									</li>
-									<li className="nav-item">
-										<a className="nav-link" data-toggle="tab" href="#tabs_4"><i className="fa fa-recycle" />Recently Bought</a>
 									</li>
 									<li className="nav-item">
 										<a className="nav-link" data-toggle="tab" href="#tabs_6"><i className="fa fa-star-o" />Reviews</a>
@@ -193,55 +188,15 @@ export const UserProfile = () => {
 
 										</div>
 									</div>
-									<div className="tab-pane fade" id="tabs_4">
-										<div className="user-recent-view">
-											<h3 className="user-details-title">Recently Bought</h3>
-											<div className="row">
-												<div className="col-sm-6">
-													<div className="single-destinations-list style-two">
-														<div className="thumb">
-															<img src={publicUrl + "assets/img/destination-list/4.png"} alt="list" />
-														</div>
-														<div className="details">
-															<p className="location"><img src={publicUrl + "assets/img/icons/1.png"} alt="map" />Maldives</p>
-															<h4 className="title"><a href="#details">Hurawalhi Island</a></h4>
-															<p className="content">7Days Tour on 2 person</p>
-															<div className="tp-price-meta">
-																<h2>620 <small>$</small></h2>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div className="col-sm-6">
-													<div className="single-destinations-list style-two">
-														<div className="thumb">
-															<img src={publicUrl + "assets/img/destination-list/5.png"} alt="list" />
-														</div>
-														<div className="details">
-															<p className="location"><img src={publicUrl + "assets/img/icons/1.png"} alt="map" />Indonesia</p>
-															<h4 className="title"><a href="#details">Bali Province</a></h4>
-															<p className="content">4days 2 person</p>
-															<div className="tp-price-meta">
-																<h2>780 <small>$</small></h2>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 									<div className="tab-pane fade" id="tabs_6">
 										<Reviews></Reviews>
 									</div>
-
 									<div className="tab-pane fade" id="tabs_7">
 										<PlacesList />
 									</div>
-
 									<div className="tab-pane fade" id="tabs_8">
 										<BookingsList />
 									</div>
-
 								</div>
 							</div>
 						</div>

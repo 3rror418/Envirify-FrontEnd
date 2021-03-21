@@ -10,7 +10,7 @@ export const BookingResult = (props) => {
                 alignContent="flex-start"
                 display="flex"
                 flexWrap="wrap"
-                >
+            >
                 {props.items.map(item => (
                     <BookingCard showReservation={props.showReservation}
                         key={item.id}
@@ -20,12 +20,12 @@ export const BookingResult = (props) => {
                         departament={item.departament}
                         calification={item.calification}
                         description={item.description}
-                        owner={item.owner} 
+                        owner={item.owner}
                         showOwner={props.showOwner}
-                        showEdit={props.showEdit}/>
+                        showEdit={props.showEdit} />
                 ))}
             </Box>
-            
+
         </div>
     )
 }
