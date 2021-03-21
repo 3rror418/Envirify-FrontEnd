@@ -1,41 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BookingResult } from './BookingResult';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export const BookingsList = () => {
 
-    const items = [{
-        id: 1,
-        name: "Cabaña A",
-        city: "Ubate",
-        departament: "Cundinamarca",
-        calification: 3.5,
-        description: "Una bonita cabaña de madera con un cuarto y un baño.",
-        owner: "Pepe Gomez"
-    }, {
-        id: 2,
-        name: "Cabaña B",
-        city: "Fuquene",
-        departament: "Cundinamarca",
-        calification: 2.5,
-        description: "Una bonita cabaña de madera con dos cuartos y un baño.",
-        owner: "Pepe Gomez"
-    }, {
-        id: 3,
-        name: "Casa",
-        city: "San Gil",
-        departament: "Santander",
-        calification: 3.2,
-        description: "Casa de Marmol con cuatro cuartos y tres baños.",
-        owner: "Pepe Gomez"
-    }];
+    let email = localStorage.getItem('emailUser');
+
+    const [lista, setlista] = useState([])
+
+    useEffect(() => {
+        axios.get("https://enfiry-back-end.herokuapp.com/api/v1/users/" + email + "/bookings")
+            .then(response => {
+                let result = response.data;
+                setlista(result);
+                console.log(result)
+            }).catch(error => {
+                Swal.fire({
+                    title: 'You do not have bookings!',
+                    text: 'Continue',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                });
+            });
+    }, [])
 
     return (
-       
-        <>
+        <div>
             <h3 className="user-details-title">Your Bookings</h3>
-            <BookingResult items={items} showReservation={false} showOwner={false} showEdit={false}/>
-        </>
-            
-        
+            <BookingResult items={lista} showReservation={false} showOwner={false} showEdit={false} />
+        </div>
     )
 }
