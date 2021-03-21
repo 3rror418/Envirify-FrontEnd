@@ -110,7 +110,7 @@ export const PlaceInfo = () => {
                                     <br></br>
                                     {(showReservation && localStorage.getItem('isLoggedIn')) && <ReservationModal sumbitBook={sumbitBookHandler} />}
                                     <br></br>
-                                    {localStorage.getItem('isLoggedIn') && <ReviewModal></ReviewModal>}
+                                    {localStorage.getItem('isLoggedIn') && <ReviewModal placeId={getParameterByName("id")}></ReviewModal>}
                                 </div>
                             </div>
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">

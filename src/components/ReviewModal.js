@@ -7,10 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import ReactStars from "react-rating-stars-component";
 import { Typography } from '@material-ui/core';
 import Swal from 'sweetalert2';
+import axios from 'axios'
 
-const ratingChanged = (newRating) => {
-    console.log(newRating);
-  };
+
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -26,12 +25,24 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const ReviewModal = (props) => {
+export const ReviewModal = ({placeId}) => {
 
     const classes = useStyles();
 
     const [openModal, setOpenModal] = useState(false);
+
     const [comment, setComment] = useState("");
+
+    const [qualification, setqualification] = useState(null)
+
+
+    const ratingChanged = (newRating) => {
+    setqualification(newRating);
+    };
+
+    const handleCommentChange = (e) => {
+        setComment(e.target.value)
+    }
 
 
     const openModalHandler = () => {
@@ -42,19 +53,46 @@ export const ReviewModal = (props) => {
         setOpenModal(false);
     };
 
+    const postRating = (rating) =>{
 
-    const handleCommentChange = (e) => {
-        setComment(e.target.value)
+        axios.post("https://enfiry-back-end.herokuapp.com/api/v1/ratings/?placeId="+placeId, rating)
+            .then(response => {
+
+                Swal.fire(
+                    'Posted!',
+                    'Your review has been posted',
+                    'success'
+                ).then(function () {
+                    window.location.href = "/"
+                })
+
+
+            }).catch(error => {
+                alert("Fallo de Conexión con DB");
+            });
     }
+    
 
     const handleCommentSubmit = () => {
-        setComment('');
+        
+        const rating ={
+            "qualification":qualification,
+            "comment":comment
+        }
         Swal.fire({
-            title: 'Review registered!',
-            text: 'Continue',
-            icon: 'success',
-            confirmButtonText: 'Cool'
-        });
+            title: 'Confirm',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, post it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                postRating(rating)
+            }
+        })
+
+        setComment('');
         closeModalHandler();
     }
 
