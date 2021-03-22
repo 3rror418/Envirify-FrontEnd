@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import { storage } from '../firebase'
 
 
@@ -104,14 +107,46 @@ export const FormCreate = () => {
                     .getDownloadURL()
                     .then(url => {
                         let newPlace = { ...place, ["urlImage"]: url }
-                        console.log("new", newPlace)
                         setplace(newPlace)
+                        Swal.fire({
+                            title: 'Success',
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        })
                     })
             }
         )
 
     }
 
+    const [Departments, setDepartments] = useState([])
+    useEffect(() => {
+        axios.get("https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.json")
+        .then(res => {
+                setDepartments(res.data);
+            }).catch(error => {
+                const response = error.response;
+                if(response.status === 404){
+                    const message = response.data
+                } else {
+                    alert("Fallo de Conexión con el BackEnd");
+                }
+            });
+    }, [])
+
+   const [cities, setcities] = useState([])
+
+    const handleChangeSelect = (e) =>{
+        let newPlace = { ...place, ["department"]: e.target.value }
+        setplace(newPlace)
+        setcities(Departments.filter(item => item.departamento===e.target.value)[0].ciudades)
+    }
+
+    const handleChangeCity = (e) =>{
+        let newPlace = { ...place, ["city"]: e.target.value }
+        setplace(newPlace)
+    }
 
     return (
         <div>
@@ -125,16 +160,37 @@ export const FormCreate = () => {
                             </label>
                         </div>
                         <div className="col-md-6">
-                            <label className="single-input-wrap style-two">
-                                <span className="single-input-title">Department</span>
-                                <input type="text" name="department" value={place.department} onChange={handleChange} />
-                            </label>
+                           
+                            <InputLabel id="demo-simple-select-label">Department</InputLabel>
+                            <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            onChange={handleChangeSelect}
+                            style={{ minWidth:"100%"}}
+                            >
+                                {
+                                    Departments.map(i=><MenuItem value={i.departamento}>{i.departamento}</MenuItem>)
+
+                                }
+                           
+                            </Select>
+                                
+                           
                         </div>
                         <div className="col-md-6">
-                            <label className="single-input-wrap style-two">
-                                <span className="single-input-title">City</span>
-                                <input type="text" name="city" value={place.city} onChange={handleChange} />
-                            </label>
+                        <InputLabel id="demo-simple-select-label">City</InputLabel>
+                            <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            style={{ minWidth:"100%"}}
+                            onChange={handleChangeCity}
+                            >
+                                {
+                                    cities.map(i=><MenuItem value={i}>{i}</MenuItem>)
+
+                                }
+                           
+                            </Select>
                         </div>
                         <div className="col-md-6">
                             <label className="single-input-wrap style-two">
