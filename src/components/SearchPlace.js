@@ -25,7 +25,7 @@ export const SearchPlace = (props) => {
             }).catch(error => {
                 const response = error.response;
                 if(response.status === 404){
-                    alert(response.data);
+                    console.log(response.data);
                 } else {
                     alert("Fallo de Conexión con el BackEnd");
                 }
