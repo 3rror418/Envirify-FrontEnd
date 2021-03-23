@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Reviews } from '../Reviews';
 import { BookingsList } from './../BookingsList';
 import { PlacesList } from './../PlacesList';
 import Swal from 'sweetalert2';
@@ -100,9 +99,6 @@ export const UserProfile = () => {
 										<a className="nav-link" data-toggle="tab" href="#tabs_3"><i className="fa fa-cog" />Edit Profile</a>
 									</li>
 									<li className="nav-item">
-										<a className="nav-link" data-toggle="tab" href="#tabs_6"><i className="fa fa-star-o" />Reviews</a>
-									</li>
-									<li className="nav-item">
 										<a className="nav-link" data-toggle="tab" href="#tabs_7"><i className="fa fa-user" />Your Places</a>
 									</li>
 									<li className="nav-item">
@@ -187,9 +183,6 @@ export const UserProfile = () => {
 											<br></br>
 
 										</div>
-									</div>
-									<div className="tab-pane fade" id="tabs_6">
-										<Reviews></Reviews>
 									</div>
 									<div className="tab-pane fade" id="tabs_7">
 										<PlacesList />
