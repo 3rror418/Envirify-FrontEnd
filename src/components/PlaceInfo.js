@@ -11,10 +11,17 @@ import { BannerV2 } from './section-components/banner-v2';
 import { ReviewModal } from './ReviewModal';
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
+import { ReviewView } from './ReviewView';
+import { Box } from '@material-ui/core';
 
 export const PlaceInfo = () => {
 
     const [info, setInfo] = useState({});
+
+    const [ratings, setRatings] = useState([]);
+
+    const [count,setCount] = useState(0);
+
 
     const getParameterByName = (name) => {
         name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
@@ -26,11 +33,33 @@ export const PlaceInfo = () => {
     const id = getParameterByName("id");
     const showReservation = (getParameterByName("showReservation") === 'true');
 
+
     useEffect(() => {
         axios.get("https://enfiry-back-end.herokuapp.com/api/v1/places/" + getParameterByName("id"))
             .then(res => {
                 setInfo(res.data);
-                console.log(res.data)
+            }).catch(error => {
+                const response = error.response;
+                if (response.status === 404) {
+                    alert(response.data);
+                } else {
+                    alert("Fallo de Conexión con el BackEnd");
+                }
+            });
+    }, []);
+
+
+    
+    let calification = 0;
+
+    useEffect(() => {
+        axios.get("https://enfiry-back-end.herokuapp.com/api/v1/ratings?placeId=" + getParameterByName("id"))
+            .then(res => {
+                setRatings(res.data);
+                res.data.map(rating => {
+                    calification = calification+rating.qualification;
+                });
+                setCount(calification/res.data.length);
             }).catch(error => {
                 const response = error.response;
                 if (response.status === 404) {
@@ -94,7 +123,7 @@ export const PlaceInfo = () => {
                                     <h3>{info.city + ", " + info.department}</h3>
                                     <Typography variant="h4">Calification: <Rating
                                         name="calification"
-                                        value={3.5}
+                                        value={count}
                                         precision={0.5}
                                         size="large"
                                         readOnly
@@ -113,6 +142,7 @@ export const PlaceInfo = () => {
                                     {localStorage.getItem('isLoggedIn') && <ReviewModal placeId={getParameterByName("id")}></ReviewModal>}
                                 </div>
                             </div>
+
                             <div className="col-xl-5 col-lg-6 offset-xl-1 wow animated fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
                                 <div className="video-popup-wrap">
                                     <div>
@@ -129,13 +159,31 @@ export const PlaceInfo = () => {
         );
     }
 
+    let ReviewsInformation = (
+        <div>
+            <Box
+                justifyContent="center"
+            >
+                <h2 style={{"text-align":"center"}}> Reviews</h2>
+                {ratings.length > 0 ? <ReviewView
+                    reviews={ratings}>
+                </ReviewView> : <h1 style={{"text-align":"center"}}>No reviews found</h1>}
+            </Box>
+        </div>
+    );
+
+
     return (
         <div>
             <Navbar />
             <BannerV2 />
             {PlaceInformation}
             <br></br>
+            <br></br>
+            {ReviewsInformation}
+            <br></br>
             <FooterV1 />
         </div>
     );
 };
+
