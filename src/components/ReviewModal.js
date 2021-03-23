@@ -53,9 +53,15 @@ export const ReviewModal = ({placeId}) => {
         setOpenModal(false);
     };
 
+    const headers = {
+        'X-Email': localStorage.getItem("emailUser")
+    }
+
     const postRating = (rating) =>{
 
-        axios.post("https://enfiry-back-end.herokuapp.com/api/v1/ratings/?placeId="+placeId, rating)
+        axios.post("https://enfiry-back-end.herokuapp.com/api/v1/ratings/?placeId="+placeId, rating, {
+            headers: headers
+        })
             .then(response => {
 
                 Swal.fire(
