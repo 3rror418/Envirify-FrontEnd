@@ -5,21 +5,12 @@ import { IntroV2 } from './section-components/intro-v2';
 import { Video } from './section-components/video';
 import { Counter } from './section-components/counter';
 import { FooterV1 } from './global-components/footer';
-import { Widget, addResponseMessage} from 'react-chat-widget';
-import 'react-chat-widget/lib/styles.css';
+
 
 export const Home_V3 = () => {
 
     
-	useEffect(() => {
-        addResponseMessage("Welcome to this awesome chat!");
-    }, [])
-
-     const handleNewUserMessage = (newMessage) => {
-        console.log(`New message incomig! ${newMessage}`);
-        addResponseMessage("Message received!");
-        // Now send the message throught the backend API
-      }
+	
 	  
     return <div>
         <Navbar />
@@ -27,11 +18,6 @@ export const Home_V3 = () => {
         <IntroV2 />
         <Video />
         <Counter />
-		 <Widget
-          handleNewUserMessage={handleNewUserMessage}
-          title="Envirify"
-          subtitle="Chat"
-        />
         <FooterV1 />
     </div>
 }

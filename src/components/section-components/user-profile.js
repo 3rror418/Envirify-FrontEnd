@@ -3,6 +3,7 @@ import { BookingsList } from './../BookingsList';
 import { PlacesList } from './../PlacesList';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { BooksToMe } from '../BooksToMe';
 
 export const UserProfile = () => {
 
@@ -104,6 +105,9 @@ export const UserProfile = () => {
 									<li className="nav-item">
 										<a className="nav-link" data-toggle="tab" href="#tabs_8"><i className="fa fa-user" />Your Bookings</a>
 									</li>
+									<li className="nav-item">
+										<a className="nav-link" data-toggle="tab" href="#tabs_9"><i className="fa fa-user" />Books to me</a>
+									</li>
 									<li className="text-center">
 										<a className="btn btn-yellow" href="#text-center" onClick={logOut}><i className="fa fa-sign-in" aria-hidden="true" /> <span>Log Out</span></a>
 									</li>
@@ -189,6 +193,10 @@ export const UserProfile = () => {
 									</div>
 									<div className="tab-pane fade" id="tabs_8">
 										<BookingsList />
+									</div>
+
+									<div className="tab-pane fade" id="tabs_9">
+										<BooksToMe/>
 									</div>
 								</div>
 							</div>
