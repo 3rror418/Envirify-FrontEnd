@@ -13,7 +13,9 @@ export const BookingsList = () => {
         axios.get("https://enfiry-back-end.herokuapp.com/api/v1/users/" + email + "/bookings")
             .then(response => {
                 let result = response.data;
-                setlista(result);
+                let list = [];
+                result.forEach(e => list.push(e.place))
+                setlista(list);
                 console.log(result)
             }).catch(error => {
                 Swal.fire({
