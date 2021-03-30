@@ -9,7 +9,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Rating from '@material-ui/core/Rating';
 import { makeStyles } from '@material-ui/core/styles';
 import moment from 'moment';
-import Swal from 'sweetalert2';
 import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const BookingCard = (props) => {
+export const BookCard = (props) => {
 
     const classes = useStyles();
 
@@ -58,27 +57,7 @@ export const BookingCard = (props) => {
             });
     }, [])
 
-    const handleDelete = () => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your book has been deleted.',
-                    'success'
-                ).then(function () {
-                    window.location.href = "/profile"
-                })
-            }
-        })
-    }
+    
 
     return (
         <div>
@@ -107,6 +86,10 @@ export const BookingCard = (props) => {
                         </Typography>}
 
                         <Typography gutterBottom>
+                            {`made by : ${user}`}
+                        </Typography>
+
+                        <Typography gutterBottom>
                             {`Initial date ${initialDate}`}
                         </Typography>
 
@@ -116,10 +99,6 @@ export const BookingCard = (props) => {
 
                         <Button variant="contained" color="primary" style={{ marginTop: "10px" }} onClick={event => window.location.href = `/place?id=${props.id}&&showReservation=${props.showReservation}&&showChat=${props.showChat}&&channelId=${channel[0]+"-"+user}`}>
                             View
-                            </Button>
-
-                        <Button variant="contained" color="primary" style={{ marginTop: "10px", marginLeft: "5px" }} onClick={handleDelete} >
-                            Delete
                         </Button>
 
                     </CardContent>

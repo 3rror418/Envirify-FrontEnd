@@ -1,10 +1,8 @@
 import { Box } from '@material-ui/core'
-import React, { useEffect } from 'react'
-import { BookingCard } from './BookingCard';
+import React from 'react'
+import { BookCard } from './BookCard'
 
-export const BookingResult = (props) => {
-
-    
+export const BookingToMeResult = (props) => {
     return (
         <div>
             <Box justifyContent="center"
@@ -15,7 +13,7 @@ export const BookingResult = (props) => {
             >
                 {props.items.map(item => (
 
-                    <BookingCard 
+                    <BookCard 
                         showReservation={props.showReservation}
                         showChat={props.showChat}
                         key={item.place.id}
