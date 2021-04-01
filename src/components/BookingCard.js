@@ -42,7 +42,7 @@ export const BookingCard = (props) => {
     console.log(props.channelId)
     const [user, setuser] = useState("")
 
-    const channel=props.channelId.split('-')
+    const channel = props.channelId.split('-')
 
     useEffect(() => {
         axios.get("https://enfiry-back-end.herokuapp.com/api/v1/users/id/" + channel[1])
@@ -59,6 +59,10 @@ export const BookingCard = (props) => {
     }, [])
 
     const handleDelete = () => {
+        const headers = {
+            "X-Email": localStorage.getItem("emailUser"),
+            "Authorization": "Bearer " + localStorage.getItem("Authentication")
+        }
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -69,13 +73,16 @@ export const BookingCard = (props) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your book has been deleted.',
-                    'success'
-                ).then(function () {
-                    window.location.href = "/profile"
-                })
+                axios.delete("https://enfiry-back-end.herokuapp.com/api/v1/books/" + props.id, { headers: headers })
+                    .then(() => {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your book has been deleted.',
+                            'success'
+                        ).then(function () {
+                            window.location.href = "/profile"
+                        })
+                    });
             }
         })
     }
@@ -114,7 +121,7 @@ export const BookingCard = (props) => {
                             {`Finish date ${finishDate}`}
                         </Typography>
 
-                        <Button variant="contained" color="primary" style={{ marginTop: "10px" }} onClick={event => window.location.href = `/place?id=${props.id}&&showReservation=${props.showReservation}&&showChat=${props.showChat}&&channelId=${channel[0]+"-"+user}`}>
+                        <Button variant="contained" color="primary" style={{ marginTop: "10px" }} onClick={event => window.location.href = `/place?id=${props.id}&&showReservation=${props.showReservation}&&showChat=${props.showChat}&&channelId=${channel[0] + "-" + user}`}>
                             View
                             </Button>
 
