@@ -19,7 +19,7 @@ export const BookingResult = (props) => {
                         showReservation={props.showReservation}
                         showChat={props.showChat}
                         key={item.place.id}
-                        id={item.id}
+                        id={item.place.id}
                         name={item.place.name}
                         image={item.place.urlImage}
                         city={item.place.city}
