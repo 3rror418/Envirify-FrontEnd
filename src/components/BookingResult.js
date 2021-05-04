@@ -29,7 +29,9 @@ export const BookingResult = (props) => {
                         owner={item.place.owner}
                         channelId={item.place.owner+"-"+item.userId}
                         showOwner={props.showOwner}
-                        showEdit={props.showEdit} />
+                        showEdit={props.showEdit} 
+                        initialDate={item.initialDate}
+                        finalDate={item.finalDate}/>
                 ))}
             </Box>
 
