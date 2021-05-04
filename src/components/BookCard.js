@@ -13,7 +13,7 @@ import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: 200,
+        width: 210,
         maxWidth: 300
     },
     media: {
@@ -36,8 +36,9 @@ export const BookCard = (props) => {
 
     const classes = useStyles();
 
-    const initialDate = moment().toLocaleString().split(' ').slice(1, 4).join(' ');
-    const finishDate = moment().toLocaleString().split(' ').slice(1, 4).join(' ');
+    const initialDate = moment(props.initialDate).format('MM/DD/YYYY')
+    const finishDate = moment(props.finalDate).format('MM/DD/YYYY')
+
     console.log(props.channelId)
     const [user, setuser] = useState("")
 
