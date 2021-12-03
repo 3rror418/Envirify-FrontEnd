@@ -2,6 +2,13 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://envirify-frontend.herokuapp.com/)
 
+## Subject
+
+Innovation and entrepreneurship with IT (2021-1)
+
+[Back Link on Github] (https://github.com/3rror418/Envirify-BackEnd)
+[Android Link on Github] (https://github.com/3rror418/Envirify-AndroidApp)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -72,3 +79,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Authors
+
+* **Nicolas Aguilera Contreras** - Colombian School of Engineering Julio Garavito
+* **Juan Camilo Angel Hernandez** - Colombian School of Engineering Julio Garavito
+* **Daniel Felipe Walteros Trujillo** - Colombian School of Engineering Julio Garavito
+* **Angie Daniela Ruiz Alfonso** - Colombian School of Engineering Julio Garavito
+
