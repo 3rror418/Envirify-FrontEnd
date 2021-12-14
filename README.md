@@ -10,6 +10,10 @@ Innovation and entrepreneurship with IT (2021-1)
 
 [Android Link on Github] (https://github.com/3rror418/Envirify-AndroidApp)
 
+## Description
+
+Platform to promote ecotourism and sustainable tourism. The main idea is to promote rural tourism by working with local communities to host their homes and thus support this population.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
